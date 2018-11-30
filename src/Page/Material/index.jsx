@@ -30,7 +30,7 @@ class Material extends React.Component {
 
     handleChange = ({ fileList }) => this.setState({ fileList })
 
-    
+
     render() {
         const { previewVisible, previewImage, fileList } = this.state;
         const uploadButton = (
