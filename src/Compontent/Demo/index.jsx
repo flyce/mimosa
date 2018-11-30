@@ -94,7 +94,7 @@ class Demo extends Component {
                         </div>
                     )}
                 </Droppable>
-                <br /><br /><br />
+                <br /><br />
                 <Droppable droppableId="droppable2">
                     {(provided, snapshot) => (
                         <div
@@ -124,7 +124,7 @@ class Demo extends Component {
                     )}
                 </Droppable>
 
-                <br /><br /><br />
+                <br /><br />
                 <Droppable droppableId="droppable3">
                     {(provided, snapshot) => (
                         <div

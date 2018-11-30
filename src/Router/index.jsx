@@ -6,6 +6,8 @@ import Scheduling from '../Page/Scheduling';
 
 import Login from '../Page/Login';
 import Transfer from '../Page/Transfer';
+import Monitor from '../Page/Monitor';
+import Material from '../Page/Material';
 
 
 class RouterIndex extends Component {
@@ -16,7 +18,9 @@ class RouterIndex extends Component {
                     <Route exact path="/" component={Login}/>
                     <Route path="/login" component={Login} />
                     <Route path="/scheduling" component={Scheduling}/>
+                    <Route path="/monitor" component={Monitor}/>
                     <Route path="/transfer" component={Transfer}/>
+                    <Route path="/material" component={Material}/>
                     <Route component={NoMatch}/>
                 </Switch>
             </Router>

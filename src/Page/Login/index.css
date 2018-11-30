@@ -50,36 +50,3 @@
     font-weight: 700;
     /*color: @primary-color;*/
 }
-
-
-
-@import '~antd/dist/antd.css';
-
-.ant-menu-horizontal {
-    border-bottom: 0px;
-}
-
-.ant-menu-horizontal > .ant-menu-item {
-    border-top: 2px solid transparent;
-    border-bottom: 0px;
-}
-
-.ant-menu-horizontal > .ant-menu-item:hover {
-    border-top: 2px solid #1890ff;
-    border-bottom: 0px;
-}
-
-.ant-menu-horizontal > .ant-menu-item-active {
-    border-top: 2px solid #1890ff;
-    border-bottom: 0px;
-}
-
-.ant-menu-horizontal > .ant-menu-item-selected {
-    border-top: 2px solid #1890ff;
-}
-
-.ant-menu-horizontal > .ant-menu-item-selected{
-    border-bottom: 0px;
-}
-
-
