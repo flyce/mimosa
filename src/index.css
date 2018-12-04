@@ -19,3 +19,13 @@
   float: left;
 }
 
+.content {
+  padding: 0 50px;
+  margin: 16px 0;
+}
+
+.scheduling {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}

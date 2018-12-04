@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '../../Layout/Header';
-import { Table, Button, message } from "antd/lib/index";
-import Demo from '../../Compontent/Demo';
+import PeopleList from '../../Compontent/PeopleList';
 
 class Scheduling extends React.Component {
     render() {
@@ -9,8 +8,8 @@ class Scheduling extends React.Component {
         return (
             <div>
                 <Header />
-                    <div style={{ padding: '0 50px',  margin: '16px 0' }}>
-                        <Demo/>
+                    <div className="content">
+                        <PeopleList/>
                     </div>
             </div>
         );

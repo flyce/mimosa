@@ -1,0 +1,66 @@
+release: {
+category: "放行人员",
+userList: [
+{id: 'release1', username: '何纯'},
+{id: 'release2', username: '葛慧斌'},
+{id: 'release3', username: '高建峰'},
+{id: 'release4', username: '郭嘉良'},
+{id: 'release5', username: '邹国丞'},
+{id: 'release6', username: '彭森虎'},
+{id: 'release7', username: '柯建江'},
+{id: 'release8', username: '杨小涛'},
+{id: 'release9', username: '程龙'},
+{id: 'release10', username: '孔祥杰'}
+]
+},
+technician: {
+category: "技术员",
+userList: [
+{id: 'technician1', username: '徐飞'},
+{id: 'technician2', username: '周旋'},
+{id: 'technician3', username: '邹懿春'},
+{id: 'technician4', username: '沈方方'},
+{id: 'technician5', username: '杨天星'},
+{id: 'technician6', username: '黄艺勇'},
+{id: 'technician7', username: '康国伟'}
+]
+},
+mechanic: {
+category: "机械员",
+userList: [
+{id: 'mechanic1', username: '李相聪'},
+{id: 'mechanic2', username: '舒建'},
+{id: 'mechanic3', username: '向益'},
+{id: 'mechanic4', username: '何文敏'},
+{id: 'mechanic5', username: '蔡宇恒'},
+{id: 'mechanic6', username: '杨成键'},
+{id: 'mechanic7', username: '李珺'},
+{id: 'mechanic8', username: '刘阳'}
+]
+},
+attendant: {
+category: "勤务员",
+userList: [
+{id: 'attendant1', username: '孟凡智'},
+{id: 'attendant2', username: '赵朋山'},
+{id: 'attendant3', username: '梁紫丰'},
+{id: 'attendant4', username: '孙赛'},
+{id: 'attendant5', username: '朱毅初'},
+{id: 'attendant6', username: '杨钦'},
+{id: 'attendant7', username: '王全峰'},
+{id: 'attendant8', username: '张家恒'},
+{id: 'attendant9', username: '薛树勇'},
+{id: 'attendant10', username: '刘震'},
+{id: 'attendant11', username: '韦永朝'},
+{id: 'attendant12', username: '陈新云'},
+{id: 'attendant13', username: '廖树成'},
+{id: 'attendant14', username: '李泽昀'}
+]
+},
+trainees: {
+category: "学员",
+userList: [
+{id: 'trainees1', username: '学员1'}
+]
+}
+},
