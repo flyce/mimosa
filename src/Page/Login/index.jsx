@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 
 import "./index.css"
-import { Form, Input, Row, Button, Icon, Tooltip, message, notification } from "antd/lib/index";
+import { Form, Input, Row, Button, Icon, message, notification } from "antd/lib/index";
 import { post } from '../../Utils/fetch';
 import { setItem, getItem, removeItem} from "../../Utils/storage";
 import history from '../../Router/history';
@@ -70,33 +69,32 @@ class NLoginForm extends Component {
 
     handleLogin() {
         // 登陆验证逻辑
-        // post(
-        //     'cli/login',
-        //     {
-        //         "username": this.state.username,
-        //         "password": this.state.password
-        //     }, false).then(
-        //         (response) => {
-        //             if (response.success) {
-        //                 message.success("登录成功");
-        //                 setItem("token", response.token);
-        //                 setItem("loginTime", Math.floor(Date.now()/1000));
-        //                 const token = getItem("token");
-        //                 if (token.length > 0) {
-        //                     history.push("dashboard/center");
-        //                     notification.open({
-        //                         message: '重要通知',
-        //                         duration: 15,
-        //                         description: '适航辅助管理系统现处于公测期间，所有模块免费向全部用户提供！',
-        //                         icon: <Icon type="smile-circle" style={{ color: '#108ee9' }} />,
-        //                     });
-        //                 }
-        //             } else {
-        //                 message.error(response.info);
-        //             }
-        //         }
-        //     );
-        history.push("scheduling");
+        post(
+            'cli/login',
+            {
+                "username": this.state.username,
+                "password": this.state.password
+            }, false).then(
+                (response) => {
+                    if (response.success) {
+                        message.success("登录成功");
+                        setItem("token", response.token);
+                        setItem("loginTime", Math.floor(Date.now()/1000));
+                        const token = getItem("token");
+                        if (token.length > 0) {
+                            history.push("scheduling");
+                            notification.open({
+                                message: '重要通知',
+                                duration: 15,
+                                description: '欢迎使用薰衣草排班系统！',
+                                icon: <Icon type="smile-circle" style={{ color: '#108ee9' }} />,
+                            });
+                        }
+                    } else {
+                        message.error(response.info);
+                    }
+                }
+            );
     }
 
     render() {

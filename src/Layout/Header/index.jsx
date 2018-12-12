@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu, Layout, Icon } from "antd/lib/index";
 import { Link } from 'react-router-dom';
-import { Dropdown, Avatar, Tooltip, Form, Modal, Input, message } from 'antd';
+import { Dropdown, Avatar } from 'antd';
 import "./style.css";
 
 const { Header } = Layout;
@@ -41,6 +41,9 @@ const HeaderComponent = () => {
                 </Menu.Item>
                 <Menu.Item key="transfer">
                     <Link to='/transfer'><Icon type="team" />工作交接</Link>
+                </Menu.Item>
+                <Menu.Item key="people">
+                    <Link to='/people'><Icon type="solution" />人员管理</Link>
                 </Menu.Item>
                 <Menu.Item
                     className="right"

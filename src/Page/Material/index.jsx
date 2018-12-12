@@ -2,11 +2,6 @@ import React from 'react';
 import Header from '../../Layout/Header';
 import { Upload, Icon, Modal } from 'antd';
 
-
-function callback(key) {
-    console.log(key);
-}
-
 class Material extends React.Component {
     state = {
         previewVisible: false,
@@ -26,7 +21,7 @@ class Material extends React.Component {
             previewImage: file.url || file.thumbUrl,
             previewVisible: true,
         });
-    }
+    };
 
     handleChange = ({ fileList }) => this.setState({ fileList })
 

@@ -8,6 +8,8 @@ import Login from '../Page/Login';
 import Transfer from '../Page/Transfer';
 import Monitor from '../Page/Monitor';
 import Material from '../Page/Material';
+import Selector from '../Page/Selector';
+import PeopleManage from '../Page/PeopleManage';
 
 
 class RouterIndex extends Component {
@@ -21,6 +23,8 @@ class RouterIndex extends Component {
                     <Route path="/monitor" component={Monitor}/>
                     <Route path="/transfer" component={Transfer}/>
                     <Route path="/material" component={Material}/>
+                    <Route path="/selector" component={Selector}/>
+                    <Route path={'/people'} component={PeopleManage} />
                     <Route component={NoMatch}/>
                 </Switch>
             </Router>
