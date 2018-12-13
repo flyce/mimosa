@@ -16,22 +16,58 @@ class PeopleList extends React.Component {
     }
 
     initFlightData = () => {
+        get('people?limit=100').then(
+            response => {
+                if (response.success) {
+                    let release =[], technician = [], mechanic = [], attendant = [], trainees =[];
+                    response.data.map((value, key) => {
+                        if (value.grade === 'release') {
+                            release.push(value);
+                        }
+                        if (value.grade === 'technician') {
+                            technician.push(value);
+                        }
+                        if (value.grade === 'mechanic') {
+                            mechanic.push(value);
+                        }
+                        if (value.grade === 'attendant') {
+                            attendant.push(value);
+                        }
+                        if (value.grade === 'trainees') {
+                            trainees.push(value);
+                        }
+                    });
+                    this.setState({
+                        people: [{
+                            category: "放行",
+                            grade: 'release',
+                            userList: release
+                        }, {
+                            category: "技术员",
+                            grade: 'technician',
+                            userList: technician
+                        }, {
+                            category: "机械员",
+                            grade: 'mechanic',
+                            userList: mechanic
+                        }, {
+                            category: "勤务员",
+                            grade: 'attendant',
+                            userList: attendant
+                        }, {
+                            category: "学员",
+                            grade: 'trainees',
+                            userList: trainees
+                        }]
+                    });
+                }
+            }
+        );
         get('flight').then(
             response => {
                 if(response.success) {
                     this.setState({
                         flight: response.data
-                    });
-                } else {
-                    message.error(response.info);
-                }
-            }
-        );
-        get('flight/peopleDemoDate').then(
-            response => {
-                if(response.success) {
-                    this.setState({
-                        people: response.data
                     });
                 } else {
                     message.error(response.info);
@@ -91,8 +127,22 @@ class PeopleList extends React.Component {
         return repeatFlag;
     };
 
+    deleteTaskRecord = (flightId, name) => {
+        get(`task?flightId=${flightId}&name=${name}`).then(
+            response => {
+                if (!response.success) {
+                    message.error('操作失败，请重试！');
+                }
+            }
+        );
+    };
+
+    addTaskRecord = (flightId, ) => {
+
+    };
+
     userDispatch = (currentFlight, peopleIndex) => {
-        let peopleScheduling = currentFlight.people
+        let peopleScheduling = currentFlight.people;
         let { flight, people } = this.state;
         people.map((value, index) => {
             if (value.grade === currentFlight.people[peopleIndex].grade) {
@@ -187,8 +237,8 @@ class PeopleList extends React.Component {
                                             ref={provided.innerRef}>
                                             {people.userList.map((item, index) => (
                                                 <Draggable
-                                                    key={item.id}
-                                                    draggableId={item.id}
+                                                    key={item._id}
+                                                    draggableId={item._id}
                                                     index={index}>
                                                     {(provided, snapshot) => (
                                                         <div
