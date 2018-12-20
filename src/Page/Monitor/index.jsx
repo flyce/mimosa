@@ -1,323 +1,205 @@
 import React from 'react';
 import Header from '../../Layout/Header';
-import { Table, Button, message } from "antd/lib/index";
+import { Table, message, Popover, Input } from "antd/lib/index";
+
+import { get, post } from "../../Utils/fetch";
+
+const Search = Input.Search;
 
 class Monitor extends React.Component {
-    render() {
-        const dataSource = [{
-            key: '1',
-            flightNo: 'DR6508',
-            airlines: '芒市-昆明-芒市',
-            trail: 'B7088',
-            gate: '150',
-            inPlace: '2010',
-            arrival: '2018',
-            departure: '2130',
-            release: '',
-            power: '',
-            fangxing: '侯乔瀚',
-            technician: '用户名',
-            mechanic: '黄朝玟',
-            attendant: '王鹏程',
-            trainees: '用户名',
-            category: '航后'
-        }, {
-            key: '2',
-            flightNo: 'DR6504',
-            airlines: '芒市-昆明-西双版纳',
-            trail: 'B6109',
-            gate: '156',
-            inPlace: '2012',
-            arrival: '2025',
-            departure: '2205',
-            release: '2130',
-            power: '',
-            fangxing: '钟家源',
-            technician: '',
-            mechanic: '黄朝玟',
-            attendant: '邱坤、汪雨轩',
-            trainees: '',
-            category: '航前'
-        }, {
-            key: '3',
-            flightNo: 'DR6504',
-            airlines: '芒市-昆明-西双版纳',
-            trail: 'B6109',
-            gate: '156',
-            inPlace: '2012',
-            arrival: '2025',
-            departure: '2205',
-            release: '2130',
-            power: '',
-            fangxing: '钟家源',
-            technician: '',
-            mechanic: '黄朝玟',
-            attendant: '邱坤、汪雨轩',
-            trainees: '',
-            category: '过站'
-        }, {
-            key: '4',
-            flightNo: 'DR6504',
-            airlines: '芒市-昆明-西双版纳',
-            trail: 'B6109',
-            gate: '156',
-            inPlace: '2012',
-            arrival: '2025',
-            departure: '2205',
-            release: '2130',
-            power: '',
-            fangxing: '钟家源',
-            technician: '',
-            mechanic: '黄朝玟',
-            attendant: '邱坤、汪雨轩',
-            trainees: '',
-            category: 0
-        }, {
-            key: '5',
-            flightNo: 'DR6504',
-            airlines: '芒市-昆明-西双版纳',
-            trail: 'B6109',
-            gate: '156',
-            inPlace: '2012',
-            arrival: '2025',
-            departure: '2205',
-            release: '2130',
-            power: '',
-            fangxing: '钟家源',
-            technician: '',
-            mechanic: '黄朝玟',
-            attendant: '邱坤、汪雨轩',
-            trainees: '',
-            category: 0
-        }, {
-            key: '6',
-            flightNo: 'DR6504',
-            airlines: '芒市-昆明-西双版纳',
-            trail: 'B6109',
-            gate: '156',
-            inPlace: '2012',
-            arrival: '2025',
-            departure: '2205',
-            release: '2130',
-            power: '',
-            fangxing: '钟家源',
-            technician: '',
-            mechanic: '黄朝玟',
-            attendant: '邱坤、汪雨轩',
-            trainees: '',
-            category: 0
-        }, {
-            key: '7',
-            flightNo: 'DR6504',
-            airlines: '芒市-昆明-西双版纳',
-            trail: 'B6109',
-            gate: '156',
-            inPlace: '2012',
-            arrival: '2025',
-            departure: '2205',
-            release: '2130',
-            power: '',
-            fangxing: '钟家源',
-            technician: '',
-            mechanic: '黄朝玟',
-            attendant: '邱坤、汪雨轩',
-            trainees: '',
-            category: 0
-        }, {
-            key: '8',
-            flightNo: 'DR6504',
-            airlines: '芒市-昆明-西双版纳',
-            trail: 'B6109',
-            gate: '156',
-            inPlace: '2012',
-            arrival: '2025',
-            departure: '2205',
-            release: '2130',
-            power: '',
-            fangxing: '钟家源',
-            technician: '',
-            mechanic: '黄朝玟',
-            attendant: '邱坤、汪雨轩',
-            trainees: '',
-            category: 0
-        }, {
-            key: '9',
-            flightNo: 'DR6504',
-            airlines: '芒市-昆明-西双版纳',
-            trail: 'B6109',
-            gate: '156',
-            inPlace: '2012',
-            arrival: '2025',
-            departure: '2205',
-            release: '2130',
-            power: '',
-            fangxing: '钟家源',
-            technician: '',
-            mechanic: '黄朝玟',
-            attendant: '邱坤、汪雨轩',
-            trainees: '',
-            category: 0
-        }, {
-            key: '10',
-            flightNo: 'DR6504',
-            airlines: '芒市-昆明-西双版纳',
-            trail: 'B6109',
-            gate: '156',
-            inPlace: '2012',
-            arrival: '2025',
-            departure: '2205',
-            release: '2130',
-            power: '',
-            fangxing: '钟家源',
-            technician: '',
-            mechanic: '黄朝玟',
-            attendant: '邱坤、汪雨轩',
-            trainees: '',
-            category: 0
-        }, {
-            key: '11',
-            flightNo: 'DR6504',
-            airlines: '芒市-昆明-西双版纳',
-            trail: 'B6109',
-            gate: '156',
-            inPlace: '2012',
-            arrival: '2025',
-            departure: '2205',
-            release: '2130',
-            power: '',
-            fangxing: '钟家源',
-            technician: '',
-            mechanic: '黄朝玟',
-            attendant: '邱坤、汪雨轩',
-            trainees: '',
-            category: 0
-        }, {
-            key: '12',
-            flightNo: 'DR6504',
-            airlines: '芒市-昆明-西双版纳',
-            trail: 'B6109',
-            gate: '156',
-            inPlace: '2012',
-            arrival: '2025',
-            departure: '2205',
-            release: '2130',
-            power: '',
-            fangxing: '钟家源',
-            technician: '',
-            mechanic: '黄朝玟',
-            attendant: '邱坤、汪雨轩',
-            trainees: '',
-            category: 0
-        }, {
-            key: '13',
-            flightNo: 'DR6504',
-            airlines: '芒市-昆明-西双版纳',
-            trail: 'B6109',
-            gate: '156',
-            inPlace: '2012',
-            arrival: '2025',
-            departure: '2205',
-            release: '2130',
-            power: '',
-            fangxing: '钟家源',
-            technician: '',
-            mechanic: '黄朝玟',
-            attendant: '邱坤、汪雨轩',
-            trainees: '',
-            category: 0
-        }, {
-            key: '14',
-            flightNo: 'DR6504',
-            airlines: '芒市-昆明-西双版纳',
-            trail: 'B6109',
-            gate: '156',
-            inPlace: '2012',
-            arrival: '2025',
-            departure: '2205',
-            release: '2130',
-            power: '',
-            fangxing: '钟家源',
-            technician: '',
-            mechanic: '黄朝玟',
-            attendant: '邱坤、汪雨轩',
-            trainees: '',
-            category: 0
-        }, {
-            key: '15',
-            flightNo: 'DR6504',
-            airlines: '芒市-昆明-西双版纳',
-            trail: 'B6109',
-            gate: '156',
-            inPlace: '2012',
-            arrival: '2025',
-            departure: '2205',
-            release: '2130',
-            power: '',
-            fangxing: '钟家源',
-            technician: '',
-            mechanic: '黄朝玟',
-            attendant: '邱坤、汪雨轩',
-            trainees: '',
-            category: 0
-        }];
+    state = {
+        isLoading: true,
+        flight: [],
+        positionVisible: false,
+        inPlaceTimeVisible: false,
+        estimatedArrivedVisible: false,
+        plannedDepartureVisible: false,
+        releaseTimeVisible: false
+    };
 
+    componentDidMount() {
+        this.initFlightData();
+    };
+
+    initFlightData = () => {
+        get('flight').then(
+            response => {
+                if(response.success) {
+                    this.setState({
+                        flight: response.data,
+                        isLoading: false
+                    });
+                } else {
+                    message.error(response.info);
+                }
+            }
+        );
+    };
+
+    renderPeopleName = (record, grade) => {
+        let string = '';
+        record.people.map((people) => {
+            if(people.grade === grade) {
+                string = string.length > 0 ? string + '、' + people.name : people.name;
+            }
+        });
+        return string;
+    };
+
+    handleDataUpdate = (data, record, timeOrPosition, key) => {
+        post('flight/update', data).then(
+            response => {
+                if (response.success) {
+                    switch (key) {
+                        case 'position':
+                            message.success(`${record.flightNo} 停机位修改为 ${timeOrPosition}`);
+                            break;
+                        case 'inPlaceTime':
+                            message.success(`${record.flightNo} 于 ${timeOrPosition} 到位`);
+                            break;
+                        case 'releaseTime':
+                            message.success(`${record.flightNo} 于 ${timeOrPosition} 放行`);
+                            break;
+                        case 'estimatedArrived':
+                            message.success(`${record.flightNo} 进港时间 修改为 ${timeOrPosition}`);
+                            break;
+                        case 'plannedDeparture':
+                            message.success(`${record.flightNo} 进港时间 修改为 ${timeOrPosition}`);
+                            break;
+                        default:;
+                    }
+                    this.initFlightData();
+                } else {
+                    message.error(response.info);
+                }
+            }
+        )
+    };
+
+    renderPopover = (record, key) => {
+        const keyValue = this.getKey(key);
+        return <Popover
+            trigger="click"
+            content={<Search
+                placeholder={"输入" + keyValue.description}
+                enterButton="修改"
+
+                onSearch={
+                    value => {
+                        let data = {};
+                        data[key] = value;
+                        this.handleDataUpdate({_id: record._id, ...data}, record, value, key);
+                    }
+                }
+            />}
+            ref={popover => this.popover = popover}
+        >
+            <div>{eval('record.' + key) || <a>录入</a>}</div>
+        </Popover>
+    };
+
+    getKey = (key) => {
+        let data;
+        switch (key) {
+            case 'position': data = {
+                description: '停机位',
+            }; break;
+            case 'inPlaceTime': data = {
+                description: '到位时间',
+            }; break;
+            case 'estimatedArrived': data = {
+                description: '进港时间',
+            }; break;
+            case 'plannedDeparture': data = {
+                description: '离港时间',
+            }; break;
+            case 'releaseTime': data = {
+                description: '放行时间',
+            }; break;
+            case 'power': data = {
+                description: '电源车/桥电',
+            }; break;
+            default:data = {
+                description: '错误的 KEY',
+            };
+        }
+        return data;
+    };
+
+    render() {
         const columns = [{
-            title: '航班号',
-            dataIndex: 'key',
-        }, {
             title: '航班号',
             dataIndex: 'flightNo',
             key: 'flightNo'
         }, {
             title: '航线',
-            dataIndex: 'airlines',
+            render: (record) => {
+                return record.start + ' - ' + record.end
+            }
         }, {
             title: '飞机号',
-            dataIndex: 'trail',
+            dataIndex: 'tail',
         }, {
             title: '停机位',
-            dataIndex: 'gate',
+            render: (record) => this.renderPopover(record, 'position')
         }, {
             title: '到位时间',
-            dataIndex: 'inPlace',
+            render: (record) => {
+                if (record.inPlaceTime) {
+                    return this.renderPopover(record, 'inPlaceTime');
+                } else {
+                    return <a onClick={
+                        () => {
+                            const inPlaceTime = new Date().getHours() + ":" + new Date().getMinutes();
+                            this.handleDataUpdate({_id: record._id, inPlaceTime}, record, inPlaceTime, 'inPlaceTime');
+                        }
+                    }>到位</a>;
+                }
+            }
         }, {
             title: '进港时间',
-            dataIndex: 'arrival',
+            render: (record) => {
+                return this.renderPopover(record, 'estimatedArrived');
+            }
         }, {
             title: '离港时间',
-            dataIndex: 'departure',
+            render: (record) => {
+                return this.renderPopover(record, 'plannedDeparture');
+            }
         }, {
             title: '放行时间',
-            dataIndex: 'release',
             render: (record) => {
-                if (record) {
-                    return record;
+                if (record.releaseTime) {
+                    return this.renderPopover(record, 'releaseTime');
                 } else {
-                    return <Button onClick={
+                    return <a onClick={
                         () => {
-                            message.success("你点击了放行！");
+                            const releaseTime = new Date().getHours() + ":" + new Date().getMinutes();
+                            this.handleDataUpdate({_id: record._id, releaseTime}, record, releaseTime, 'releaseTime');
                         }
-                    }>放行</Button>;
+                    }>放行</a>;
                 }
             }
         }, {
             title: '电源车/桥电',
-            dataIndex: 'power',
+            render: (record) => this.renderPopover(record, 'power')
         }, {
             title: '放行人员',
-            dataIndex: 'fangxing',
+            render: (record) => this.renderPeopleName(record, 'release')
+
         }, {
             title: '技术员',
-            dataIndex: 'technician',
+            render: (record) => this.renderPeopleName(record, 'technician')
+
         }, {
             title: '机械员',
-            dataIndex: 'mechanic',
+            render: (record) => this.renderPeopleName(record, 'mechanic')
         }, {
             title: '勤务员',
-            dataIndex: 'attendant',
+            render: (record) => this.renderPeopleName(record, 'attendant')
         }, {
             title: '学员',
-            dataIndex: 'trainees',
+            render: (record) => this.renderPeopleName(record, 'trainees')
         }, {
             title: '类别',
             dataIndex: 'category',
@@ -327,7 +209,7 @@ class Monitor extends React.Component {
             <div>
                 <Header />
                 <div style={{ padding: '0 50px',  margin: '16px 0' }}>
-                    <Table dataSource={dataSource} columns={columns} size="small" pagination={false} />
+                    <Table dataSource={this.state.flight} rowKey={(record) => record._id} columns={columns} size="small" pagination={false} loading={this.state.isLoading} />
                 </div>
             </div>
         );

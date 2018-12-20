@@ -1,101 +1,38 @@
 import React from 'react';
 
 import { Transfer } from 'antd';
+import {get} from "../../Utils/fetch";
 
 class PeopleSelector extends React.Component {
     state = {
-        mockData: [],
         targetKeys: [],
+        people: [],
+        release: [],
+        technician: [],
+        mechanic: [],
+        attendant: [],
+        trainees: []
     };
 
-    getPeopleList = (category) => {
-        let data;
-        switch(category) {
-            case 'release': data = [{
-                key: 1,
-                title: '放行1'
-            }, {
-                key: 2,
-                title: '放行2'
-            }, {
-                key: 3,
-                title: '放行3'
-            }, {
-                key: 4,
-                title: '放行4'
-            }]; break;
-            case 'technician': data = [{
-                key: 5,
-                title: '技术员1'
-            }, {
-                key: 6,
-                title: '技术员2'
-            }, {
-                key: 7,
-                title: '技术员3'
-            }, {
-                key: 8,
-                title: '技术员4'
-            }]; break;
-            case 'mechanic': data = [{
-                key: 9,
-                title: '机械员1'
-            }, {
-                key: 10,
-                title: '机械员2'
-            }, {
-                key: 11,
-                title: '机械员3'
-            }, {
-                key: 12,
-                title: '机械员4'
-            }]; break;
-            case 'attendant': data = [{
-                key: 13,
-                title: '勤务员1'
-            }, {
-                key: 14,
-                title: '勤务员2'
-            }, {
-                key: 15,
-                title: '勤务员3'
-            }, {
-                key: 16,
-                title: '勤务员4'
-            }]; break;
-            case 'trainees': data = [{
-                key: 17,
-                title: '学员1'
-            }, {
-                key: 18,
-                title: '学员2'
-            }, {
-                key: 19,
-                title: '学员3'
-            }, {
-                key: 20,
-                title: '学员4'
-            }]; break;
-            default: data = [{
-                key: 21,
-                title: '其他人员1'
-            }, {
-                key: 22,
-                title: '其他人员2'
-            }, {
-                key: 23,
-                title: '其他人员3'
-            }, {
-                key: 24,
-                title: '其他人员4'
-            }]; break;
-        }
-        return data;
+    componentDidMount() {
+        this.getPeopleList(this.props.grade);
+    }
+
+    getPeopleList = (grade) => {
+        get('people?limit=100&grade=' + grade).then(
+            response => {
+                console.log(response);
+                this.setState({
+                    people: response.data
+                });
+            }
+        );
     };
 
     filterOption = (inputValue, option) => option.description.indexOf(inputValue) > -1;
 
     handleChange = (targetKeys) => {
+        console.log(targetKeys);
         this.setState({ targetKeys });
     };
 
@@ -107,13 +44,14 @@ class PeopleSelector extends React.Component {
         return (
             <div>
                 <Transfer
-                    dataSource={this.getPeopleList(this.props.category)}
+                    dataSource={this.state.people}
                     showSearch
                     filterOption={this.filterOption}
                     targetKeys={this.state.targetKeys}
                     onChange={this.handleChange}
                     onSearch={this.handleSearch}
-                    render={item => item.title}
+                    rowKey={item => item._id}
+                    render={item => item.name}
                 />
             </div>
         );

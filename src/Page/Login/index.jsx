@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import "./index.css"
+import "./style.css";
 import { Form, Input, Row, Button, Icon, message, notification } from "antd/lib/index";
 import { post } from '../../Utils/fetch';
 import { setItem, getItem, removeItem} from "../../Utils/storage";
@@ -22,14 +22,13 @@ class NLoginForm extends Component {
 
     componentDidMount() {
         const loginTime = getItem("loginTime");
-
         if (Math.floor(Date.now()/1000) - loginTime > config.loginEffect) {
             removeItem("token");
             removeItem("username");
             removeItem("_id");
             removeItem("loginTime");
         } else {
-            history.push("dashboard/center")
+            history.push("/scheduling");
         }
     }
 
@@ -77,17 +76,16 @@ class NLoginForm extends Component {
             }, false).then(
                 (response) => {
                     if (response.success) {
-                        message.success("登录成功");
                         setItem("token", response.token);
                         setItem("loginTime", Math.floor(Date.now()/1000));
                         const token = getItem("token");
                         if (token.length > 0) {
                             history.push("scheduling");
                             notification.open({
-                                message: '重要通知',
-                                duration: 15,
-                                description: '欢迎使用薰衣草排班系统！',
-                                icon: <Icon type="smile-circle" style={{ color: '#108ee9' }} />,
+                                message: '欢迎',
+                                duration: 5,
+                                description: '欢迎使用 Mimosa 排班系统！',
+                                icon: <Icon type="smile" style={{ color: '#108ee9' }} />,
                             });
                         }
                     } else {
@@ -104,7 +102,7 @@ class NLoginForm extends Component {
             <div className="form">
                 <div className="loginlogo">
                     <img alt="logo" src={logo} />
-                    <span>Iris Studio</span>
+                    <span>Mimosa Project</span>
                 </div>
                 <form>
                     <FormItem>

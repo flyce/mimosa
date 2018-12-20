@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Router, Route, Switch, Link } from 'react-router-dom';
 import history from './history.js';
+import { loginVerify } from "../Utils/loginVerify";
 
 import Scheduling from '../Page/Scheduling';
-
 import Login from '../Page/Login';
 import Transfer from '../Page/Transfer';
 import Monitor from '../Page/Monitor';
 import Material from '../Page/Material';
 import Selector from '../Page/Selector';
 import PeopleManage from '../Page/PeopleManage';
-
+import Logout from '../Page/Logout';
 
 class RouterIndex extends Component {
     render() {
@@ -19,18 +19,26 @@ class RouterIndex extends Component {
                 <Switch>
                     <Route exact path="/" component={Login}/>
                     <Route path="/login" component={Login} />
-                    <Route path="/scheduling" component={Scheduling}/>
-                    <Route path="/monitor" component={Monitor}/>
-                    <Route path="/transfer" component={Transfer}/>
-                    <Route path="/material" component={Material}/>
-                    <Route path="/selector" component={Selector}/>
-                    <Route path={'/people'} component={PeopleManage} />
+                    <PrivateRoute path="/scheduling" component={Scheduling}/>
+                    <PrivateRoute path="/monitor" component={Monitor}/>
+                    <PrivateRoute path="/transfer" component={Transfer}/>
+                    <PrivateRoute path="/material" component={Material}/>
+                    <PrivateRoute path="/selector" component={Selector}/>
+                    <PrivateRoute path={'/people'} component={PeopleManage} />
+                    <PrivateRoute path={'/logout'} component={Logout} />
                     <Route component={NoMatch}/>
                 </Switch>
             </Router>
         );
     }
 }
+
+const PrivateRoute = (props) => {
+    return (
+        loginVerify() ? <Route path={props.path} component={props.component} /> : <Route path={props.path} component={Login} />
+
+    );
+};
 
 const NoMatch = ({location}) => (
     <div>

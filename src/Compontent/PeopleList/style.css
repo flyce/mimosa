@@ -1,7 +1,7 @@
 .peopleContainer {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    /*align-items: center;*/
     justify-content:  space-between;
     text-align: center;
 }
@@ -49,4 +49,8 @@
 
 .traineesTag {
     color: #20e958;
+}
+
+.preset {
+    margin-bottom: 10px;
 }
