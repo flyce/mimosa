@@ -1,11 +1,11 @@
 import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { message, Badge, Tag, Button, Icon } from 'antd';
+import { Upload, message, Badge, Tag, Button, Icon, Spin } from 'antd';
 import { get, post } from '../../Utils/fetch';
 import './style.css';
 import shuffle from 'knuth-shuffle-seeded';
 
-import Preset from '../Modal';
+import Preset from '../Preset';
 import Unselector from '../Unselector';
 
 class PeopleList extends React.Component {
@@ -62,7 +62,10 @@ class PeopleList extends React.Component {
                         flight: response.data,
                         flightDataLoading: false
                     });
-                    this.initCount(response.data);
+                    setTimeout(() => {
+                        this.initCount(response.data);
+                    }, 0);
+
                 } else {
                     message.error(response.info);
                 }
@@ -287,7 +290,6 @@ class PeopleList extends React.Component {
                        } else {
                            message.error(`${userInfo.name} 已在当前航班中！`)
                        }
-
                    }
                 });
             } else {
@@ -313,23 +315,79 @@ class PeopleList extends React.Component {
         message.error("error");
     };
 
+    goAheadPikachu = () => {
+        this.handleModalVisible();
+        const { flight, availablePeople } = this.state;
+        const release = shuffle(availablePeople.filter(data => data.grade === 'release')),
+            technician = shuffle(availablePeople.filter(data => data.grade === 'technician')),
+            mechanic = shuffle(availablePeople.filter(data => data.grade === 'mechanic')),
+            attendant = shuffle(availablePeople.filter(data => data.grade === 'attendant'));
+        flight.map((flightRecord, index) => {
+            this.addTaskRecord(flightRecord, this.getShufflePeopleInfo(release, index), flight, index);
+            this.addTaskRecord(flightRecord, this.getShufflePeopleInfo(technician, index), flight, index);
+            this.addTaskRecord(flightRecord, this.getShufflePeopleInfo(mechanic, index), flight, index);
+            this.addTaskRecord(flightRecord, this.getShufflePeopleInfo(attendant, index, true), flight, index);
+        });
+    };
+
+    getShufflePeopleInfo = (peopleArray, index, flag) => {
+        // if(flag && peopleArray[index].name === '王全峰' && this.state.flight.length > peopleArray.length) {
+        //     index = index + 1;
+        // }
+        // console.log(peopleArray[index]);
+
+        if(peopleArray.length > index) {
+            return peopleArray[index];
+        } else {
+            return peopleArray[index % (peopleArray.length - 1)]
+        }
+    };
+
     render () {
         const parentMethods = {
             handleModalOk: this.handleModalOk,
             handleModalVisible: this.handleModalVisible,
+            onOK: this.goAheadPikachu
+        };
+
+        const props = {
+            name: 'flight',
+            action: '//localhost:4000/flight/upload',
+            headers: {
+                Auth: localStorage.getItem('token'),
+            },
+            showUploadList: false,
+            onChange: (info) =>  {
+            console.log(info.file.response);
+            // if (info.file.status !== 'uploading') {
+            //     console.log(info.file, info.fileList);
+            // }
+            if (info.file.status === 'done') {
+                message.success(`${info.file.name} 文件导入成功！`);
+                this.initFlightData();
+
+            } else if (info.file.status === 'error') {
+                message.error(`${info.file.name} 文件导入失败.`);
+            }
+        },
         };
 
         if(this.state.flightDataLoading && this.state.peopleDataLoading) {
-            return (<Icon type="loading" />);
+            return (<div className="loading">
+                <Spin />
+            </div>);
         } else {
             return (
                 <div className="scheduling">
                     <DragDropContext onDragEnd={this.onDragEnd}>
                         <div>
                             <div className="preset">
-                                <Button onClick={() => {
-                                    message.success("导入航班数据");
-                                }}>导入航班数据</Button>&nbsp;&nbsp;
+                                <Upload {...props}>
+                                    <Button>导入进港数据</Button>
+                                </Upload>&nbsp;&nbsp;
+                                <Upload {...props}>
+                                    <Button>导入出港数据</Button>
+                                </Upload>&nbsp;&nbsp;
                                 <Button onClick={() => {
                                     this.handlePreset();
                                 }}>预排班</Button>
@@ -501,7 +559,7 @@ class PeopleList extends React.Component {
                                                 {...provided.dragHandleProps}
                                             >
                                                 {flight.flightNo}<br />
-                                                {flight.start} - {flight.end}<br />
+                                                {flight.airlines}<br />
                                                 {flight.tail}<br />
                                                 {flight.position ? flight.position : '未知机位'}<br />
                                                 {flight.plannedDeparture + " - " + flight.plannedArrived}<br />

@@ -2,12 +2,13 @@ import React from 'react';
 import { Modal, message } from "antd/lib/index";
 
 const Preset = (props) => {
-    const { visible, content, title, handleModalVisible } = props;
+    const { visible, content, title, handleModalVisible, onOK, width } = props;
     return (<Modal
         title={title}
         visible={visible}
+        width={width}
         onOk={() => {
-            message.error("ok");
+            onOK();
         }}
         onCancel={() => handleModalVisible()}
     >

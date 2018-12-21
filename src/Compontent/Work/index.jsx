@@ -1,47 +1,30 @@
 import React  from 'react';
-import { Form, Input, Icon, Button } from 'antd';
+import { Form, Input } from 'antd';
+import BraftEditor from 'braft-editor';
+import 'braft-editor/dist/index.css';
+import "./style.css";
 
 const FormItem = Form.Item;
 
-class DynamicFieldSet extends React.Component {
-    remove = (k) => {
-        const { form } = this.props;
-        // can use data-binding to get
-        const keys = form.getFieldValue('keys');
-        // We need at least one passenger
-        if (keys.length === 1) {
-            return;
+class Work extends React.Component {
+    handleChange = (editorState) => {
+        if(editorState.toHTML() !== '<p></p>') {
+            this.props.form.validateFields((error, values) => {
+                if (!error) {
+                    const submitData = {
+                        handoverName: values.hangoverName,
+                        content: values.content.toHTML()
+                    };
+                    this.props.async(submitData);
+                }
+            });
         }
 
-        // can use data-binding to set
-        form.setFieldsValue({
-            keys: keys.filter(key => key !== k),
-        });
-    }
+    };
 
-    add = () => {
-        const { form } = this.props;
-        // can use data-binding to get
-        const keys = form.getFieldValue('keys');
-        const nextKeys = keys.concat(keys.length);
-        // can use data-binding to set
-        // important! notify form to detect changes
-        form.setFieldsValue({
-            keys: nextKeys,
-        });
-    }
+    render () {
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.form.validateFields((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-            }
-        });
-    }
-
-    render() {
-        const { getFieldDecorator, getFieldValue } = this.props.form;
+        const { getFieldDecorator } = this.props.form;
         const formItemLayout = {
             labelCol: {
                 xs: { span: 24 },
@@ -52,59 +35,41 @@ class DynamicFieldSet extends React.Component {
                 sm: { span: 20 },
             },
         };
-        const formItemLayoutWithOutLabel = {
-            wrapperCol: {
-                xs: { span: 24, offset: 0 },
-                sm: { span: 20, offset: 4 },
-            },
-        };
-        getFieldDecorator('keys', { initialValue: [] });
-        const keys = getFieldValue('keys');
-        const formItems = keys.map((k, index) => {
-            return (
-                <FormItem
-                    {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
-                    label={index === 0 ? '交接事项' : ''}
-                    required={false}
-                    key={k}
-                >
-                    {getFieldDecorator(`transfer[${k}]`, {
-                        validateTrigger: ['onChange', 'onBlur'],
-                        rules: [{
-                            required: true,
-                            whitespace: true,
-                            message: "请输入交接事项或删除本字段",
-                        }],
-                    })(
-                        <Input placeholder="交接事项" style={{ width: '60%', marginRight: 8 }} />
-                    )}
-                    {keys.length > 1 ? (
-                        <Icon
-                            className="dynamic-delete-button"
-                            type="minus-circle-o"
-                            disabled={keys.length === 1}
-                            onClick={() => this.remove(k)}
-                        />
-                    ) : null}
-                </FormItem>
-            );
-        });
+
         return (
-            <Form onSubmit={this.handleSubmit}>
-                {formItems}
-                <FormItem {...formItemLayoutWithOutLabel}>
-                    <Button type="dashed" onClick={this.add} style={{ width: '60%' }}>
-                        <Icon type="plus" /> 添加一行
-                    </Button>
-                </FormItem>
-                <FormItem {...formItemLayoutWithOutLabel}>
-                    <Button type="primary" htmlType="submit">提交</Button>
-                </FormItem>
-            </Form>
-        );
+            <div className="demo-container">
+                <Form>
+                    <FormItem {...formItemLayout} label="交接人">
+                        {getFieldDecorator('hangoverName', {
+                            rules: [{
+                                required: true,
+                                message: '请输入交接人'
+                            }],
+                        })(
+                            <Input size="large" placeholder="请输入交接人" style={{ width: '90%'}}/>
+                        )}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label="交接内容">
+                        {getFieldDecorator('content', {
+                            validateTrigger: 'onBlur',
+                            rules: [{
+                                required: true,
+                                message: '请输入交接内容'
+                            }],
+                        })(
+                            <BraftEditor
+                                className="my-editor editor-wrapper"
+                                // controls={controls}
+                                placeholder="请输入交接内容"
+                                onChange={this.handleChange}
+                                style={{ width: '90%'}}
+                            />
+                        )}
+                    </FormItem>
+                </Form>
+            </div>
+        )
     }
 }
 
-const WrappedDynamicFieldSet = Form.create()(DynamicFieldSet);
-
-export default WrappedDynamicFieldSet;
+export default Form.create()(Work)

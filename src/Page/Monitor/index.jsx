@@ -50,30 +50,41 @@ class Monitor extends React.Component {
         post('flight/update', data).then(
             response => {
                 if (response.success) {
-                    switch (key) {
-                        case 'position':
-                            message.success(`${record.flightNo} 停机位修改为 ${timeOrPosition}`);
-                            break;
-                        case 'inPlaceTime':
-                            message.success(`${record.flightNo} 于 ${timeOrPosition} 到位`);
-                            break;
-                        case 'releaseTime':
-                            message.success(`${record.flightNo} 于 ${timeOrPosition} 放行`);
-                            break;
-                        case 'estimatedArrived':
-                            message.success(`${record.flightNo} 进港时间 修改为 ${timeOrPosition}`);
-                            break;
-                        case 'plannedDeparture':
-                            message.success(`${record.flightNo} 进港时间 修改为 ${timeOrPosition}`);
-                            break;
-                        default:;
-                    }
+                   if(timeOrPosition) {
+                       switch (key) {
+                           case 'position':
+                               message.success(`${record.flightNo} 停机位修改为 ${timeOrPosition}`);
+                               break;
+                           case 'inPlaceTime':
+                               message.success(`${record.flightNo} 于 ${timeOrPosition} 到位`);
+                               break;
+                           case 'releaseTime':
+                               message.success(`${record.flightNo} 于 ${timeOrPosition} 放行`);
+                               break;
+                           case 'estimatedArrived':
+                               message.success(`${record.flightNo} 进港时间 修改为 ${timeOrPosition}`);
+                               break;
+                           case 'plannedDeparture':
+                               message.success(`${record.flightNo} 进港时间 修改为 ${timeOrPosition}`);
+                               break;
+                           default:;
+                       }
+                   } else {
+                       message.success(`${record.flightNo} 数据已删除`);
+                   }
                     this.initFlightData();
                 } else {
                     message.error(response.info);
                 }
             }
         )
+    };
+
+    handleArrivedTime = (time) => {
+        const date = time.match(/\(\d{1,2}\)/)[0].substr(1,2);
+        time = time.replace(/\(\d{1,2}\)/, '');
+        time = time.length === 4 ? time : '0' + time;
+        return Number(date + time);
     };
 
     renderPopover = (record, key) => {
@@ -107,7 +118,7 @@ class Monitor extends React.Component {
             case 'inPlaceTime': data = {
                 description: '到位时间',
             }; break;
-            case 'estimatedArrived': data = {
+            case 'plannedArrived': data = {
                 description: '进港时间',
             }; break;
             case 'plannedDeparture': data = {
@@ -130,18 +141,20 @@ class Monitor extends React.Component {
         const columns = [{
             title: '航班号',
             dataIndex: 'flightNo',
-            key: 'flightNo'
+            key: 'flightNo',
+            sorter: (a, b) => a.flightNo > b.flightNo,
         }, {
             title: '航线',
             render: (record) => {
-                return record.start + ' - ' + record.end
+                return record.airlines
             }
         }, {
             title: '飞机号',
             dataIndex: 'tail',
+            sorter: (a, b) => a.tail.replace('B', '') - b.tail.replace('B', ''),
         }, {
             title: '停机位',
-            render: (record) => this.renderPopover(record, 'position')
+            render: (record) => this.renderPopover(record, 'position'),
         }, {
             title: '到位时间',
             render: (record) => {
@@ -155,17 +168,20 @@ class Monitor extends React.Component {
                         }
                     }>到位</a>;
                 }
-            }
+            },
         }, {
             title: '进港时间',
             render: (record) => {
-                return this.renderPopover(record, 'estimatedArrived');
-            }
+                return this.renderPopover(record, 'plannedArrived');
+            },
+            defaultSortOrder: 'ascend',
+            sorter:
+                (a, b) => !(this.handleArrivedTime(a.plannedArrived) < this.handleArrivedTime(b.plannedArrived))
         }, {
             title: '离港时间',
             render: (record) => {
                 return this.renderPopover(record, 'plannedDeparture');
-            }
+            },
         }, {
             title: '放行时间',
             render: (record) => {
