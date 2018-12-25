@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Dropdown, Avatar } from 'antd';
 import { post } from '../../Utils/fetch';
 import "./style.css";
+import logo from './logo.svg';
+import { getItem } from "../../Utils/storage";
 
 const { Header } = Layout;
 
@@ -11,14 +13,14 @@ const { Header } = Layout;
 const FormItem = Form.Item;
 
 const CreateForm = Form.create()(props => {
-    const { modalVisible, form, handleAdd, handleModalVisible } = props;
+    const { modalVisible, form, handleUpdatePassword, handleModalVisible } = props;
     const okHandle = () => {
         form.validateFields((err, fieldsValue) => {
             if (fieldsValue.password.length > 0) {
                 if (err) return;
                 form.resetFields();
                 if (fieldsValue.password === fieldsValue.verifyPassword) {
-                    handleAdd(fieldsValue);
+                    handleUpdatePassword(fieldsValue);
                     handleModalVisible();
                 } else {
                     message.error("两次密码不一致!");
@@ -61,15 +63,14 @@ class HeaderComponent extends React.PureComponent {
     };
 
 
-    handleAdd = data => {
-        this.setState({
-            modalVisible: true
-        });
+    handleUpdatePassword = data => {
         post('user/update', {
             password: data.password
         }).then(response => {
             if(response.success) {
-                message.success(response.info);
+                message.success("密码修改成功！");
+            } else {
+                message.error(response.info);
             }
         })
     };
@@ -92,13 +93,16 @@ class HeaderComponent extends React.PureComponent {
         );
 
         const parentMethods = {
-            handleAdd: this.handleAdd,
+            handleUpdatePassword: this.handleUpdatePassword,
             handleModalVisible: this.handleModalVisible,
         };
 
         return (
             <Header>
-                <div className="logo" />
+                <div className="logo headerLogo">
+                    <img alt="logo" src={logo} />
+                    <span>Mimosa Project</span>
+                </div>
                 <Menu
                     theme="light"
                     selectedKeys={[window.location.pathname.substr(1)]}
@@ -111,9 +115,9 @@ class HeaderComponent extends React.PureComponent {
                     <Menu.Item key="monitor">
                         <Link to='/monitor' ><Icon type="file-text" />工作情况</Link>
                     </Menu.Item>
-                    <Menu.Item key="material">
-                        <Link to='/material' ><Icon type="tool" />航材使用记录</Link>
-                    </Menu.Item>
+                    {/*<Menu.Item key="material">*/}
+                        {/*<Link to='/material' ><Icon type="tool" />航材使用记录</Link>*/}
+                    {/*</Menu.Item>*/}
                     <Menu.Item key="transfer">
                         <Link to='/transfer'><Icon type="team" />工作交接</Link>
                     </Menu.Item>
@@ -126,7 +130,7 @@ class HeaderComponent extends React.PureComponent {
                         <Dropdown overlay={menu}>
                       <span className={"action account"}>
                         <Avatar size="small" className={"avatar"} src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png" />
-                        <span className={"name"}>&nbsp;Echo</span>
+                        <span className={"name"}>&nbsp;{getItem("username")}</span>
                       </span>
                         </Dropdown>
                     </Menu.Item>

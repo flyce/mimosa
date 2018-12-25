@@ -77,6 +77,7 @@ class NLoginForm extends Component {
                 (response) => {
                     if (response.success) {
                         setItem("token", response.token);
+                        setItem("username", response.username);
                         setItem("loginTime", Math.floor(Date.now()/1000));
                         const token = getItem("token");
                         if (token.length > 0) {

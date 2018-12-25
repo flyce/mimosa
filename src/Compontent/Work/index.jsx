@@ -22,6 +22,17 @@ class Work extends React.Component {
 
     };
 
+    componentDidMount () {
+
+        // 异步设置编辑器内容
+        setTimeout(() => {
+            this.props.form.setFieldsValue({
+                content: BraftEditor.createEditorState('<p><strong>故障保留：</strong></p><ol><li>Some Text Here.</li></ol><p></p><p><strong>重点监控故障：</strong></p><ol><li>Some Text Here.</li></ol><p></p><p><strong>飞机情况：</strong></p><ol><li>Some Text Here.</li></ol>')
+            })
+        }, 100)
+
+    }
+
     render () {
 
         const { getFieldDecorator } = this.props.form;

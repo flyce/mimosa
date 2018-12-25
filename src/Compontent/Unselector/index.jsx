@@ -21,6 +21,7 @@ class Unselector extends React.Component {
                     let children =[];
                     response.data.map((people, index) => {
                         children.push(<Option key={people._id}>{people.name}</Option>);
+                        return 0;
                     });
                     this.setState({
                         children,
@@ -39,6 +40,7 @@ class Unselector extends React.Component {
             let data = this.state.sourceData;
             value.map((_id, index) => {
                 data = data.filter(content => content._id !== _id);
+                return 0;
             });
             this.props.updateAvailablePeople(data);
         }

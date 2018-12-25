@@ -7,10 +7,9 @@ import Scheduling from '../Page/Scheduling';
 import Login from '../Page/Login';
 import Transfer from '../Page/Transfer';
 import Monitor from '../Page/Monitor';
-import Material from '../Page/Material';
-import Selector from '../Page/Selector';
 import PeopleManage from '../Page/PeopleManage';
 import Logout from '../Page/Logout';
+import LiveScreen from '../Page/LiveScreen';
 
 class RouterIndex extends Component {
     render() {
@@ -22,10 +21,10 @@ class RouterIndex extends Component {
                     <PrivateRoute path="/scheduling" component={Scheduling}/>
                     <PrivateRoute path="/monitor" component={Monitor}/>
                     <PrivateRoute path="/transfer" component={Transfer}/>
-                    <PrivateRoute path="/material" component={Material}/>
-                    <PrivateRoute path="/selector" component={Selector}/>
+                    {/*<PrivateRoute path="/material" component={Material}/>*/}
                     <PrivateRoute path={'/people'} component={PeopleManage} />
                     <PrivateRoute path={'/logout'} component={Logout} />
+                    <Route path={'/live'} component={LiveScreen} />
                     <Route component={NoMatch}/>
                 </Switch>
             </Router>

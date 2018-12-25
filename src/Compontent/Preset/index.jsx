@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, message } from "antd/lib/index";
+import { Modal } from "antd/lib/index";
 
 const Preset = (props) => {
     const { visible, content, title, handleModalVisible, onOK, width } = props;

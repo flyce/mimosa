@@ -1,13 +1,14 @@
 import React from 'react';
-import { Card, Button, message } from 'antd';
+import { Card, Button, message, Popover, Input } from 'antd';
 import { post } from '../../Utils/fetch';
 
+const Search = Input.Search;
 
 class MyHangover extends React.PureComponent {
 
     number2Workshop = number => {
         let workshop;
-        switch(number) {
+        switch(Number(number)) {
             case 1: workshop = '一车间';break;
             case 2: workshop = '二车间';break;
             case 3: workshop = '三车间';break;
@@ -19,8 +20,8 @@ class MyHangover extends React.PureComponent {
         return workshop;
     };
 
-    confirmItem = (id) => {
-        post('transfer/update', {_id: id, confirm: true}).then(
+    confirmItem = (data) => {
+        post('transfer/update', data).then(
             response => {
                 if(response.success) {
                     this.props.initData();
@@ -34,6 +35,8 @@ class MyHangover extends React.PureComponent {
 
     timestamp2Date = timestamp => new Date(timestamp).toLocaleString().substr(0, 10).replace(/\//g, '-');
 
+    dayOrNightTransfer = time => new Date(time).toLocaleString('zh-CN', {hour12: false}).substr(11,2) > 10 ? '白班' : '夜班';
+
     render() {
         const { handover } = this.props;
         return (
@@ -42,17 +45,27 @@ class MyHangover extends React.PureComponent {
                     return (
                         <Card
                             key={index}
-                            title={this.number2Workshop(handoverRecord.workshop) +  " " + this.timestamp2Date(handoverRecord.created)}
+                            title={this.timestamp2Date(handoverRecord.created) + ' ' + this.dayOrNightTransfer(handoverRecord.created) + ' ' + this.number2Workshop(handoverRecord.handoverWorkshop) }
                             extra={handoverRecord.confirm ?
-                                <div>已确认</div> :
-                                <Button
-                                    type="primary"
-                                    onClick={() => {
-                                        this.confirmItem(handoverRecord._id);
-                                    }}
+                                <div>{handoverRecord.receiverName} 已确认</div> :
+                                <Popover
+                                    content={<Search
+                                        placeholder={"输入确认人"}
+                                        enterButton="确认"
+                                        onSearch={
+                                            value => {
+                                                this.confirmItem({_id: handoverRecord._id, receiverName: value, confirm: true})
+                                            }
+                                        }
+                                    />}
+                                trigger="click"
                                 >
-                                    确认
-                                </Button>}
+                                    <Button
+                                        type="primary"
+                                    >
+                                        确认
+                                    </Button>
+                                </Popover>}
                         >
                             <Text2Html content={handoverRecord.content} />
                         </Card>

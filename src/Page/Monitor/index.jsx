@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../Layout/Header';
-import { Table, message, Popover, Input } from "antd/lib/index";
+import { Table, message, Popover, Input, Popconfirm, Button } from "antd/lib/index";
+import './style.css';
 
 import { get, post } from "../../Utils/fetch";
 
@@ -42,6 +43,7 @@ class Monitor extends React.Component {
             if(people.grade === grade) {
                 string = string.length > 0 ? string + '、' + people.name : people.name;
             }
+            return 0;
         });
         return string;
     };
@@ -130,11 +132,27 @@ class Monitor extends React.Component {
             case 'power': data = {
                 description: '电源车/桥电',
             }; break;
+            case 'note': data = {
+                description: '备注',
+            }; break;
             default:data = {
                 description: '错误的 KEY',
             };
         }
         return data;
+    };
+
+    deleteFlight = (_id) => {
+        post('flight/delete',{_id}).then(
+            response => {
+                if (response.success) {
+                    message.success("删除成功");
+                    this.initFlightData();
+                } else {
+                    response.error(response.error);
+                }
+            }
+        );
     };
 
     render() {
@@ -197,8 +215,11 @@ class Monitor extends React.Component {
                 }
             }
         }, {
-            title: '电源车/桥电',
+            title: '电源车',
             render: (record) => this.renderPopover(record, 'power')
+        }, {
+            title: '类别',
+            dataIndex: 'category',
         }, {
             title: '放行人员',
             render: (record) => this.renderPeopleName(record, 'release')
@@ -206,7 +227,6 @@ class Monitor extends React.Component {
         }, {
             title: '技术员',
             render: (record) => this.renderPeopleName(record, 'technician')
-
         }, {
             title: '机械员',
             render: (record) => this.renderPeopleName(record, 'mechanic')
@@ -217,8 +237,24 @@ class Monitor extends React.Component {
             title: '学员',
             render: (record) => this.renderPeopleName(record, 'trainees')
         }, {
-            title: '类别',
-            dataIndex: 'category',
+            title: '备注',
+            render: (record) => {
+                return this.renderPopover(record, 'note');
+            }
+        }, {
+            title: '操作',
+            render: (record) => (
+                <Popconfirm
+                    title={`确定删除${record.flightNo}航班？`}
+                    okText="确定"
+                    cancelText="取消"
+                    onConfirm={() => {
+                        this.deleteFlight(record._id);
+                    }}
+                >
+                    <a href="#">删除</a>
+                </Popconfirm>
+            )
         }];
 
         return (
@@ -226,6 +262,9 @@ class Monitor extends React.Component {
                 <Header />
                 <div style={{ padding: '0 50px',  margin: '16px 0' }}>
                     <Table dataSource={this.state.flight} rowKey={(record) => record._id} columns={columns} size="small" pagination={false} loading={this.state.isLoading} />
+                </div>
+                <div className="addButton">
+                    <Button shape="circle" icon="plus" />
                 </div>
             </div>
         );

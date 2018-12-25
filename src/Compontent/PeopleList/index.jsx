@@ -1,12 +1,14 @@
 import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Upload, message, Badge, Tag, Button, Icon, Spin } from 'antd';
+import { Upload, message, Badge, Tag, Button, Spin } from 'antd';
 import { get, post } from '../../Utils/fetch';
 import './style.css';
 import shuffle from 'knuth-shuffle-seeded';
 
 import Preset from '../Preset';
 import Unselector from '../Unselector';
+
+const ButtonGroup = Button.Group;
 
 class PeopleList extends React.Component {
     state = {
@@ -36,6 +38,19 @@ class PeopleList extends React.Component {
         this.initFlightData();
     }
 
+    componentWillMount(){
+        this.mounted = true;
+    }
+
+
+    componentWillUnmount() {
+        this.mounted = false;
+        clearTimeout(this.timer);
+        this.setState = (state,callback)=>{
+            return;
+        };
+    }
+
     initFlightData = () => {
         get('people?limit=100').then(
             response => {
@@ -62,10 +77,9 @@ class PeopleList extends React.Component {
                         flight: response.data,
                         flightDataLoading: false
                     });
-                    setTimeout(() => {
+                    this.time = setTimeout(() => {
                         this.initCount(response.data);
                     }, 0);
-
                 } else {
                     message.error(response.info);
                 }
@@ -235,32 +249,34 @@ class PeopleList extends React.Component {
     };
 
     initCount = (flight) => {
-        flight.map((flightInfo, index) => {
-            if(flightInfo.people.length > 0) {
-                flightInfo.people.map((peopleInfo, key) => {
-                    let data;
-                    switch(peopleInfo.grade) {
-                        case 'release': data = this.state.release;break;
-                        case 'technician': data = this.state.technician;break;
-                        case 'mechanic': data = this.state.mechanic;break;
-                        case 'attendant': data = this.state.attendant;break;
-                        default: data = this.state.trainees;break;
-                    }
-                    data.map((info, index) => {
-                        if(info._id === peopleInfo._id) {
-                            data[index].count = (data[index].count || 0) + 1;
+        if(this.mounted) {
+            flight.map((flightInfo, index) => {
+                if(flightInfo.people.length > 0) {
+                    flightInfo.people.map((peopleInfo, key) => {
+                        let data;
+                        switch(peopleInfo.grade) {
+                            case 'release': data = this.state.release;break;
+                            case 'technician': data = this.state.technician;break;
+                            case 'mechanic': data = this.state.mechanic;break;
+                            case 'attendant': data = this.state.attendant;break;
+                            default: data = this.state.trainees;break;
+                        }
+                        data.map((info, index) => {
+                            if(info._id === peopleInfo._id) {
+                                data[index].count = (data[index].count || 0) + 1;
+                            }
+                        });
+                        switch(peopleInfo.grade) {
+                            case 'release': this.setState({release: data});break;
+                            case 'technician': this.setState({technician: data});break;
+                            case 'mechanic': this.setState({mechanic: data});break;
+                            case 'attendant': this.setState({attendant: data});break;
+                            default: this.setState({trainees: data});break;
                         }
                     });
-                    switch(peopleInfo.grade) {
-                        case 'release': this.setState({release: data});break;
-                        case 'technician': this.setState({technician: data});break;
-                        case 'mechanic': this.setState({mechanic: data});break;
-                        case 'attendant': this.setState({attendant: data});break;
-                        default: this.setState({trainees: data});break;
-                    }
-                });
-            }
-        })
+                }
+            });
+        }
     };
 
     userDispatch = (currentFlight, userInfo) => {
@@ -382,15 +398,20 @@ class PeopleList extends React.Component {
                     <DragDropContext onDragEnd={this.onDragEnd}>
                         <div>
                             <div className="preset">
-                                <Upload {...props}>
-                                    <Button>导入进港数据</Button>
-                                </Upload>&nbsp;&nbsp;
-                                <Upload {...props}>
-                                    <Button>导入出港数据</Button>
-                                </Upload>&nbsp;&nbsp;
-                                <Button onClick={() => {
-                                    this.handlePreset();
-                                }}>预排班</Button>
+                                <ButtonGroup>
+                                    <Upload {...props}>
+                                        <Button type="primary" ghost>
+                                            上传航班数据
+                                        </Button>
+                                    </Upload>
+
+                                    <Button
+                                        type="primary"
+                                        ghost
+                                        onClick={() => {
+                                            this.handlePreset();
+                                        }}>预排班</Button>
+                                </ButtonGroup>
                             </div>
 
 

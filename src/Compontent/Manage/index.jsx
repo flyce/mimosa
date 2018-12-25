@@ -276,7 +276,10 @@ class Manage extends React.PureComponent {
         return (
             <Card>
                 <div style={{marginBottom: 10}}>
-                    <Button onClick={() => {
+                    <Button
+                        type="primary"
+                        ghost
+                        onClick={() => {
                         this.handleModalVisible(true);
                         this.setState({
                             value: {
@@ -287,13 +290,6 @@ class Manage extends React.PureComponent {
                             create: true
                         })
                     }}>新建</Button>&nbsp;&nbsp;
-                    <Button
-                        onClick={() => {
-                            message.info('功能开发中');
-                        }}
-                    >
-                        导入
-                    </Button>&nbsp;&nbsp;
                 </div>
                 <CreateForm {...parentCreateMethods} modalVisible={this.state.modalVisible} value={this.state.value} key={record => record._id} create={this.state.create}/>
                 <Table

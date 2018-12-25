@@ -63,3 +63,8 @@
     padding: 30px 50px;
     margin: 20px 0;
 }
+
+.leftButton {
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+}

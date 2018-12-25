@@ -44,3 +44,24 @@
 .ant-menu-horizontal > .ant-menu-item-selected{
     border-bottom: 0px;
 }
+
+
+.headerLogo {
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.headerLogo img {
+    width: 40px;
+    margin-right: 8px;
+}
+
+.headerLogo span {
+    vertical-align: text-bottom;
+    font-size: 16px;
+    text-transform: uppercase;
+    display: inline-block;
+    font-weight: 700;
+}
