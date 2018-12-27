@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../../assets/logo.svg';
-import { Table, message } from "antd/lib/index";
+import { Table, message, Card } from "antd/lib/index";
 import { get } from "../../Utils/fetch";
 import './style.css';
 import io from 'socket.io-client';
@@ -33,7 +33,7 @@ class LiveScreen extends React.Component {
     };
 
     initFlightData = () => {
-        get('flight').then(
+        get('cli/flight').then(
             response => {
                 if(response.success) {
                     this.setState({
@@ -133,7 +133,13 @@ class LiveScreen extends React.Component {
                     <span>Mimosa Project </span>
                 </div>
                 <div style={{ padding: '0 20px'}}>
-                    <Table dataSource={this.state.flight} rowKey={(record) => record._id} columns={columns} size="small" pagination={false} loading={this.state.isLoading} />
+                    {/*<Table dataSource={this.state.flight} rowKey={(record) => record._id} columns={columns} size="small" pagination={false} loading={this.state.isLoading} />*/}
+                    <Card
+                        title="B6110"
+                    >
+
+                    </Card>
+
                 </div>
             </div>
         );

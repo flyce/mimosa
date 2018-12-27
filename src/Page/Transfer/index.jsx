@@ -52,17 +52,18 @@ class Transfer extends React.Component {
         if(this.state.transfer.content === '<p></p>' || this.state.transfer.content === '') {
             message.error('请不要提交空白数据');
         } else {
-            post('transfer', this.state.transfer).then(
-                response => {
-                    if(response.success) {
-                        message.success("提交成功");
-                        this.handleModalVisible();
-                        this.initData();
-                    } else {
-                        message.error(response.info);
-                    }
-                }
-            );
+            // post('transfer', this.state.transfer).then(
+            //     response => {
+            //         if(response.success) {
+            //             message.success("提交成功");
+            //             this.handleModalVisible();
+            //             this.initData();
+            //         } else {
+            //             message.error(response.info);
+            //         }
+            //     }
+            // );
+            console.log(this.state.transfer);
         }
     };
 
