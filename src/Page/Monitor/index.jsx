@@ -25,6 +25,7 @@ class Monitor extends React.Component {
     initFlightData = () => {
         get('flight').then(
             response => {
+                console.log(response);
                 if(response.success) {
                     this.setState({
                         flight: response.data,
@@ -264,7 +265,32 @@ class Monitor extends React.Component {
                     <Table dataSource={this.state.flight} rowKey={(record) => record._id} columns={columns} size="small" pagination={false} loading={this.state.isLoading} />
                 </div>
                 <div className="addButton">
-                    <Button shape="circle" icon="plus" />
+                    <Popover
+                        trigger="click"
+                        content={<Search
+                            placeholder={"输入飞机号"}
+                            enterButton="提交"
+
+                            onSearch={
+                                value => {
+                                    post('flight',{
+                                        date: new Date().getFullYear() + '-' + Number(new Date().getMonth() + 1) + '-' + new Date().getDate(),
+                                        tail: value
+                                    }).then(response => {
+                                        if(response.success) {
+                                            message.success(`添加 ${value} 成功`);
+                                            this.initFlightData();
+                                        } else {
+                                            message.error(response.info);
+                                        }
+                                    })
+                                }
+                            }
+                        />}
+                        ref={popover => this.popover = popover}
+                    >
+                        <Button shape="circle" icon="plus" />
+                    </Popover>
                 </div>
             </div>
         );

@@ -1,11 +1,12 @@
 import React from 'react';
 import logo from '../../assets/logo.svg';
-import { Table, message, Card } from "antd/lib/index";
+import { Table, message, Card, Timeline, Icon } from "antd/lib/index";
 import { get } from "../../Utils/fetch";
 import './style.css';
 import io from 'socket.io-client';
 import config from '../../Config/env';
 let socket = io.connect(config.socket);
+const { Meta } = Card;
 
 class LiveScreen extends React.Component {
     state = {
@@ -65,6 +66,37 @@ class LiveScreen extends React.Component {
         return Number(date + time);
     };
 
+    getPeopleName =  people => {
+        let data;
+        people.map((p, index) => {
+            if(index === 0) {
+                data = p.name;
+            } else {
+                data = data + ' ' + p.name;
+            }
+        });
+        return data;
+    };
+
+    getColorFlag = value => {
+        if(value.releaseTime) {
+            return 'colorRelease';
+        } else {
+            if(value.inPlaceTime) {
+                return 'colorInPlace';
+            } else {
+                let time = value.plannedArrived;
+                time = time.replace(/\(\d{1,2}\)/, '');
+                const min = Number(time.substr(0, 2) * 60) + Number(time.substr(2, 2));
+                const cuttentMin = Number(new Date().getHours() * 60) + Number(new Date().getMinutes());
+                const dif = Math.abs(min - cuttentMin);
+                if(dif < 60) {
+                    return 'colorOneHour';
+                }
+            }
+        }
+
+    };
 
     render() {
         const columns = [{
@@ -134,12 +166,28 @@ class LiveScreen extends React.Component {
                 </div>
                 <div style={{ padding: '0 20px'}}>
                     {/*<Table dataSource={this.state.flight} rowKey={(record) => record._id} columns={columns} size="small" pagination={false} loading={this.state.isLoading} />*/}
-                    <Card
-                        title="B6110"
-                    >
-
-                    </Card>
-
+                </div>
+                <div style={{display: 'flex', justifyContent: 'Center'}}>
+                    <Timeline mode="alternate" pending style={{marginTop: '30px', width: "900px"}}>
+                        {this.state.flight.map((value, index) => {
+                            return (
+                                <Timeline.Item key={value._id}>
+                                    <div className="timelineItem">
+                                        <div className={this.getColorFlag(value) + ' ' + 'aCard'}>
+                                            <strong className="str">{value.plannedArrived + '-' + value.plannedDeparture}</strong>
+                                            <div className="con">
+                                                <div>{value.flightNo}&nbsp;&nbsp;&nbsp;&nbsp;B1188</div>
+                                                <div>{value.airlines}&nbsp;&nbsp;&nbsp;&nbsp;{value.category}
+                                                </div>
+                                                <div>{this.getPeopleName(value.people)}</div>
+                                                {value.note ? <div>value.note</div> : null}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Timeline.Item>
+                            );
+                        })}
+                    </Timeline>
                 </div>
             </div>
         );

@@ -21,7 +21,7 @@ class MyHangover extends React.PureComponent {
     };
 
     confirmItem = (data) => {
-        post('transfer/update', data).then(
+        post('transfer/confirm', data).then(
             response => {
                 if(response.success) {
                     this.props.initData();
@@ -33,12 +33,33 @@ class MyHangover extends React.PureComponent {
         );
     };
 
+    car = number => {
+        if (number === 0) {
+            return "已加油";
+        }
+        if (number === 1) {
+            return "未加油";
+        }
+        return "N/A"
+    };
+
+    clean = number => {
+        if (number === 0) {
+            return "已打扫";
+        }
+        if (number === 1) {
+            return "未打扫";
+        }
+        return "N/A"
+    };
+
     timestamp2Date = timestamp => new Date(timestamp).toLocaleString().substr(0, 10).replace(/\//g, '-');
 
     dayOrNightTransfer = time => new Date(time).toLocaleString('zh-CN', {hour12: false}).substr(11,2) > 10 ? '白班' : '夜班';
 
     render() {
         const { handover } = this.props;
+        console.log(handover);
         return (
             <div>
                 {handover.map((handoverRecord, index) => {
@@ -67,7 +88,22 @@ class MyHangover extends React.PureComponent {
                                     </Button>
                                 </Popover>}
                         >
-                            <Text2Html content={handoverRecord.content} />
+                            <div>
+                                <h3>日常工作</h3>
+                                <div>
+                                    值班室卫生打扫情况：{this.car(handoverRecord.car)}<br />
+                                    车辆外观完好，完成加油：{this.clean(handoverRecord.clean)}<br />
+                                    备注: {handoverRecord.note}
+                                </div>
+                                <h3>故障保留</h3>
+                                <Text2Html content={handoverRecord.faultRetention}/>
+                                <h3>重点监控故障</h3>
+                                <Text2Html content={handoverRecord.keyMonitoringFaults}/>
+                                <h3>飞机情况</h3>
+                                <Text2Html content={handoverRecord.aircraftConditions}/>
+                                <h3>行政要求</h3>
+                                <Text2Html content={handoverRecord.administrativeRequirements}/>
+                            </div>
                         </Card>
                     );
                 })}
@@ -81,7 +117,6 @@ const Text2Html = (props) => {
         return {__html: text};
     };
 
-    console.log(props);
     return <div dangerouslySetInnerHTML={createMarkup(props.content)} />;
 };
 
