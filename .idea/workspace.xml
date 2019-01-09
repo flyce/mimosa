@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33db2da2-c44a-401f-a7dc-7459e63c87d6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/Compontent/MyHandover/index.jsx" afterPath="$PROJECT_DIR$/src/Compontent/MyHandover/index.jsx" />
-      <change beforePath="$PROJECT_DIR$/src/Compontent/Work/index.jsx" afterPath="$PROJECT_DIR$/src/Compontent/Work/index.jsx" />
-      <change beforePath="$PROJECT_DIR$/src/Compontent/Work/style.css" afterPath="$PROJECT_DIR$/src/Compontent/Work/style.css" />
       <change beforePath="$PROJECT_DIR$/src/Page/LiveScreen/index.jsx" afterPath="$PROJECT_DIR$/src/Page/LiveScreen/index.jsx" />
-      <change beforePath="$PROJECT_DIR$/src/Page/LiveScreen/style.css" afterPath="$PROJECT_DIR$/src/Page/LiveScreen/style.css" />
-      <change beforePath="$PROJECT_DIR$/src/Page/Monitor/index.jsx" afterPath="$PROJECT_DIR$/src/Page/Monitor/index.jsx" />
-      <change beforePath="$PROJECT_DIR$/src/Page/Monitor/style.css" afterPath="$PROJECT_DIR$/src/Page/Monitor/style.css" />
-      <change beforePath="$PROJECT_DIR$/src/Page/Transfer/index.jsx" afterPath="$PROJECT_DIR$/src/Page/Transfer/index.jsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -34,10 +26,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Compontent/MyHandover/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
+            <state relative-caret-position="315">
               <caret line="23" column="30" lean-forward="false" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
               <folding />
             </state>
@@ -47,8 +39,18 @@
       <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Compontent/Work/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-637">
-              <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+            <state relative-caret-position="403">
+              <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Page/LiveScreen/index.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="107">
+              <caret line="103" column="36" lean-forward="false" selection-start-line="103" selection-start-column="36" selection-end-line="103" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -114,12 +116,12 @@
         <option value="$PROJECT_DIR$/src/Compontent/PeopleList/index.jsx" />
         <option value="$PROJECT_DIR$/src/Compontent/Work/style.css" />
         <option value="$PROJECT_DIR$/src/Page/LiveScreen/style.css" />
-        <option value="$PROJECT_DIR$/src/Page/LiveScreen/index.jsx" />
         <option value="$PROJECT_DIR$/src/Page/Monitor/style.css" />
         <option value="$PROJECT_DIR$/src/Page/Monitor/index.jsx" />
         <option value="$PROJECT_DIR$/src/Compontent/Work/index.jsx" />
         <option value="$PROJECT_DIR$/src/Page/Transfer/index.jsx" />
         <option value="$PROJECT_DIR$/src/Compontent/MyHandover/index.jsx" />
+        <option value="$PROJECT_DIR$/src/Page/LiveScreen/index.jsx" />
       </list>
     </option>
   </component>
@@ -178,13 +180,6 @@
               <item name="mimosa" type="b2602c69:ProjectViewProjectNode" />
               <item name="mimosa" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Compontent" type="462c0819:PsiDirectoryNode" />
-              <item name="MyHandover" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mimosa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mimosa" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Page" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -192,7 +187,7 @@
               <item name="mimosa" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Page" type="462c0819:PsiDirectoryNode" />
-              <item name="Transfer" type="462c0819:PsiDirectoryNode" />
+              <item name="LiveScreen" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -269,12 +264,12 @@
       <workItem from="1545726264119" duration="131000" />
       <workItem from="1545810051854" duration="3088000" />
       <workItem from="1545873385761" duration="15532000" />
-      <workItem from="1545961471191" duration="4179000" />
+      <workItem from="1545961471191" duration="5497000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196892000" />
+    <option name="totallyTimeSpent" value="198210000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="24" y="43" width="1292" height="682" extended-state="0" />
@@ -428,14 +423,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="458">
           <caret line="65" column="21" lean-forward="false" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Page/LiveScreen/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="171" column="50" lean-forward="true" selection-start-line="171" selection-start-column="50" selection-end-line="171" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -643,6 +630,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compontent/MyHandover/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="23" column="30" lean-forward="false" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Page/Transfer/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-19">
@@ -653,16 +648,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Compontent/Work/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-637">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+        <state relative-caret-position="403">
+          <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compontent/MyHandover/index.jsx">
+    <entry file="file://$PROJECT_DIR$/src/Page/LiveScreen/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="23" column="30" lean-forward="false" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+        <state relative-caret-position="107">
+          <caret line="103" column="36" lean-forward="false" selection-start-line="103" selection-start-column="36" selection-end-line="103" selection-end-column="36" />
           <folding />
         </state>
       </provider>

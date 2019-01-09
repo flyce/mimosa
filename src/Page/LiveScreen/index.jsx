@@ -98,6 +98,16 @@ class LiveScreen extends React.Component {
 
     };
 
+    timeCheck = time => {
+        const mins = Number(time.substr(0, 2) * 60) + Number(time.substr(2, 2));
+        const currentMins = Number(new Date().getHours() * 60) + Number(new Date().getMinutes());
+        if( mins - currentMins < 60 ) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
     render() {
         const columns = [{
             title: '航班号',
@@ -164,28 +174,30 @@ class LiveScreen extends React.Component {
                     <img alt="logo" src={logo} />
                     <span>Mimosa Project </span>
                 </div>
-                <div style={{ padding: '0 20px'}}>
-                    {/*<Table dataSource={this.state.flight} rowKey={(record) => record._id} columns={columns} size="small" pagination={false} loading={this.state.isLoading} />*/}
-                </div>
+                {/*<div style={{ padding: '0 20px'}}>*/}
+                    {/*/!*<Table dataSource={this.state.flight} rowKey={(record) => record._id} columns={columns} size="small" pagination={false} loading={this.state.isLoading} />*!/*/}
+                {/*</div>*/}
                 <div style={{display: 'flex', justifyContent: 'Center'}}>
                     <Timeline mode="alternate" pending style={{marginTop: '30px', width: "900px"}}>
                         {this.state.flight.map((value, index) => {
-                            return (
-                                <Timeline.Item key={value._id}>
-                                    <div className="timelineItem">
-                                        <div className={this.getColorFlag(value) + ' ' + 'aCard'}>
-                                            <strong className="str">{value.plannedArrived + '-' + value.plannedDeparture}</strong>
-                                            <div className="con">
-                                                <div>{value.flightNo}&nbsp;&nbsp;&nbsp;&nbsp;B1188</div>
-                                                <div>{value.airlines}&nbsp;&nbsp;&nbsp;&nbsp;{value.category}
+                            if(this.timeCheck(value.plannedArrived)) {
+                                return (
+                                    <Timeline.Item key={value._id}>
+                                        <div className="timelineItem">
+                                            <div className={this.getColorFlag(value) + ' ' + 'aCard'}>
+                                                <strong className="str">{value.plannedArrived + '-' + value.plannedDeparture}</strong>
+                                                <div className="con">
+                                                    <div>{value.flightNo}&nbsp;&nbsp;&nbsp;&nbsp;B1188</div>
+                                                    <div>{value.airlines}&nbsp;&nbsp;&nbsp;&nbsp;{value.category}
+                                                    </div>
+                                                    <div>{this.getPeopleName(value.people)}</div>
+                                                    {value.note ? <div>value.note</div> : null}
                                                 </div>
-                                                <div>{this.getPeopleName(value.people)}</div>
-                                                {value.note ? <div>value.note</div> : null}
                                             </div>
                                         </div>
-                                    </div>
-                                </Timeline.Item>
-                            );
+                                    </Timeline.Item>
+                                );
+                            }
                         })}
                     </Timeline>
                 </div>
