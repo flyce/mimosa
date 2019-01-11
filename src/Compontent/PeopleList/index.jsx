@@ -4,6 +4,7 @@ import { Upload, message, Badge, Tag, Button, Spin } from 'antd';
 import { get, post } from '../../Utils/fetch';
 import './style.css';
 import shuffle from 'knuth-shuffle-seeded';
+import config from '../../Config/env';
 
 import Preset from '../Preset';
 import Unselector from '../Unselector';
@@ -368,7 +369,7 @@ class PeopleList extends React.Component {
 
         const props = {
             name: 'flight',
-            action: '//localhost:4000/flight/upload',
+            action: config.url + 'flight/upload',
             headers: {
                 Auth: localStorage.getItem('token'),
             },
@@ -583,7 +584,7 @@ class PeopleList extends React.Component {
                                                 {flight.airlines}<br />
                                                 {flight.tail}<br />
                                                 {flight.position ? flight.position : '未知机位'}<br />
-                                                {flight.plannedDeparture + " - " + flight.plannedArrived}<br />
+                                                {flight.plannedArrived + " - " + flight.plannedDeparture}<br />
                                                 {flight.people ? flight.people.map((value, index) => {
                                                     return <Tag key={index} className={value.grade + "Tag"} onClick={() => {
                                                         this.userDispatch(flight, value);

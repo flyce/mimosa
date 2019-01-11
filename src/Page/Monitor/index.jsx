@@ -3,7 +3,7 @@ import Header from '../../Layout/Header';
 import { Table, message, Popover, Input, Popconfirm, Button } from "antd/lib/index";
 import './style.css';
 
-import { get, post } from "../../Utils/fetch";
+import { get, post, downloadFile } from "../../Utils/fetch";
 
 const Search = Input.Search;
 
@@ -291,6 +291,10 @@ class Monitor extends React.Component {
                     >
                         <Button shape="circle" icon="plus" />
                     </Popover>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <Button shape="circle" icon="export" onClick={() => {
+                        downloadFile('flight/export', Number(new Date().getMonth() + 1) + '月' + new Date().getDate() + '日航班导出文件');
+                    }} />
                 </div>
             </div>
         );
