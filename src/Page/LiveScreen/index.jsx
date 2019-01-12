@@ -190,7 +190,8 @@ class LiveScreen extends React.Component {
                                             <div className={this.getColorFlag(value) + ' ' + 'aCard'}>
                                                 <strong className="str">{value.plannedArrived + '-' + value.plannedDeparture}</strong>
                                                 <div className="con">
-                                                    <div>{value.flightNo}&nbsp;&nbsp;&nbsp;&nbsp;B1188</div>
+                                                    <div>{value.flightNo}&nbsp;&nbsp;&nbsp;&nbsp;{value.tail}</div>
+                                                    <div>{value.position}</div>
                                                     <div>{value.airlines}&nbsp;&nbsp;&nbsp;&nbsp;{value.category}
                                                     </div>
                                                     <div>{this.getPeopleName(value.people)}</div>

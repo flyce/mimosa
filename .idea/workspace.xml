@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="33db2da2-c44a-401f-a7dc-7459e63c87d6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Compontent/PeopleList/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compontent/PeopleList/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Config/env.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Config/env.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Page/LiveScreen/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Page/LiveScreen/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Page/Monitor/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Page/Monitor/index.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Page/LiveScreen/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="105" column="20" selection-start-line="105" selection-start-column="20" selection-end-line="105" selection-end-column="20" />
+            <state relative-caret-position="171">
+              <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -120,19 +117,6 @@
               <item name="mimosa" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="mimosa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mimosa" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Page" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mimosa" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mimosa" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Page" type="462c0819:PsiDirectoryNode" />
-              <item name="LiveScreen" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -209,12 +193,13 @@
       <workItem from="1545961471191" duration="5497000" />
       <workItem from="1547196383587" duration="3765000" />
       <workItem from="1547259347422" duration="100000" />
-      <workItem from="1547260189613" duration="1703000" />
+      <workItem from="1547260189613" duration="1965000" />
+      <workItem from="1547264506265" duration="410000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="203778000" />
+    <option name="totallyTimeSpent" value="204450000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="222" y="127" width="1292" height="682" extended-state="0" />
@@ -546,8 +531,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Page/LiveScreen/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="105" column="20" selection-start-line="105" selection-start-column="20" selection-end-line="105" selection-end-column="20" />
+        <state relative-caret-position="171">
+          <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
         </state>
       </provider>
     </entry>
