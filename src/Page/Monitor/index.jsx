@@ -23,7 +23,7 @@ class Monitor extends React.Component {
     };
 
     initFlightData = () => {
-        get('flight').then(
+        get('flight?limit=100').then(
             response => {
                 console.log(response);
                 if(response.success) {

@@ -71,7 +71,7 @@ class PeopleList extends React.Component {
             }
         );
 
-        get('flight').then(
+        get('flight?limit=100').then(
             response => {
                 if(response.success) {
                     this.setState({
