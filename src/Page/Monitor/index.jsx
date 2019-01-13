@@ -25,7 +25,6 @@ class Monitor extends React.Component {
     initFlightData = () => {
         get('flight?limit=100').then(
             response => {
-                console.log(response);
                 if(response.success) {
                     this.setState({
                         flight: response.data,
@@ -85,13 +84,29 @@ class Monitor extends React.Component {
 
     handleArrivedTime = (time) => {
         const date = time.match(/\(\d{1,2}\)/)[0].substr(1,2);
-        time = time.replace(/\(\d{1,2}\)/, '');
-        time = time.length === 4 ? time : '0' + time;
-        return Number(date + time);
+        const mins = parseInt(date * 24 * 60) + parseInt(time.substr(0,2) * 60) + parseInt(time.substr(3,2));
+        return mins;
     };
 
     renderPopover = (record, key) => {
         const keyValue = this.getKey(key);
+        // if(key === 'plannedDeparture') {
+        //     if(record.estimatedDeparture) {
+        //         key = 'estimatedDeparture';
+        //     }
+        //     if(key === 'actualDeparture') {
+        //         key = 'actualDeparture';
+        //     }
+        // }
+        //
+        // if(key === 'plannedArrived') {
+        //     if(record.estimatedArrived) {
+        //         key = 'estimatedArrived';
+        //     }
+        //     if(key === 'actualArrived') {
+        //         key = 'actualArrived';
+        //     }
+        // }
         return <Popover
             trigger="click"
             content={<Search
@@ -195,7 +210,7 @@ class Monitor extends React.Component {
             },
             defaultSortOrder: 'ascend',
             sorter:
-                (a, b) => !(this.handleArrivedTime(a.plannedArrived) < this.handleArrivedTime(b.plannedArrived))
+                (a, b) => this.handleArrivedTime(a.plannedArrived) - this.handleArrivedTime(b.plannedArrived)
         }, {
             title: '离港时间',
             render: (record) => {

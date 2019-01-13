@@ -34,9 +34,8 @@ class LiveScreen extends React.Component {
     };
 
     initFlightData = () => {
-        get('cli/flight').then(
+        get('cli/flight?limit=100').then(
             response => {
-                console.log(response)
                 if(response.success) {
                     this.setState({
                         flight: response.data,
@@ -100,15 +99,13 @@ class LiveScreen extends React.Component {
     };
 
     timeCheck = time => {
-        const mins =Number(time.substr(0, 2) * 60) + Number(time.substr(3, 2))  ;
+        const mins = parseInt(time.substr(0, 2) * 60) + parseInt(time.substr(3, 2))  ;
         const currentMins = Number(new Date().getHours() * 60) + Number(new Date().getMinutes());
-
-        return true;
-        // if( mins - currentMins > 60 ) {
-        //     return true;
-        // } else {
-        //     return false;
-        // }
+        if( currentMins - 120 < mins ) {
+            return true;
+        } else {
+            return false;
+        }
     };
 
     render() {

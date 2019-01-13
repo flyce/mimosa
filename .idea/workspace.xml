@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="33db2da2-c44a-401f-a7dc-7459e63c87d6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Compontent/MyHandover/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Compontent/MyHandover/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Config/env.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Config/env.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Page/LiveScreen/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Page/LiveScreen/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Page/Monitor/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Page/Monitor/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Page/Transfer/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Page/Transfer/index.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,11 +22,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Page/LiveScreen/index.jsx">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Page/PeopleManage/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+            <state relative-caret-position="195">
+              <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Page/Transfer/index.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-266">
+              <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Compontent/MyHandover/index.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="870">
+              <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compontent/Manage/index.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="199">
+              <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -33,8 +69,8 @@
       <find>onChange</find>
       <find>Draggable</find>
       <find>handleDataUpdate</find>
-      <find>console</find>
       <find>错误的</find>
+      <find>console</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -85,18 +121,18 @@
         <option value="$PROJECT_DIR$/src/Page/LiveScreen/style.css" />
         <option value="$PROJECT_DIR$/src/Page/Monitor/style.css" />
         <option value="$PROJECT_DIR$/src/Compontent/Work/index.jsx" />
-        <option value="$PROJECT_DIR$/src/Page/Transfer/index.jsx" />
-        <option value="$PROJECT_DIR$/src/Compontent/MyHandover/index.jsx" />
-        <option value="$PROJECT_DIR$/src/Page/Monitor/index.jsx" />
         <option value="$PROJECT_DIR$/src/Compontent/PeopleList/index.jsx" />
         <option value="$PROJECT_DIR$/src/Config/env.js" />
         <option value="$PROJECT_DIR$/src/Page/LiveScreen/index.jsx" />
+        <option value="$PROJECT_DIR$/src/Page/Monitor/index.jsx" />
+        <option value="$PROJECT_DIR$/src/Page/Transfer/index.jsx" />
+        <option value="$PROJECT_DIR$/src/Compontent/MyHandover/index.jsx" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="222" />
-    <option name="y" value="127" />
+    <option name="x" value="43" />
+    <option name="y" value="218" />
     <option name="width" value="1292" />
     <option name="height" value="682" />
   </component>
@@ -105,6 +141,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -117,18 +154,43 @@
               <item name="mimosa" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="mimosa" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mimosa" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Compontent" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mimosa" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mimosa" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Compontent" type="462c0819:PsiDirectoryNode" />
+              <item name="MyHandover" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mimosa" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mimosa" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Page" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mimosa" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mimosa" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Page" type="462c0819:PsiDirectoryNode" />
+              <item name="Transfer" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/echo/Desktop/mimosa/src/Compontent/PeopleList/index.jsx" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mimosaServer" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
@@ -195,17 +257,18 @@
       <workItem from="1547259347422" duration="100000" />
       <workItem from="1547260189613" duration="1965000" />
       <workItem from="1547264506265" duration="410000" />
+      <workItem from="1547368400258" duration="3898000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="204450000" />
+    <option name="totallyTimeSpent" value="208348000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="222" y="127" width="1292" height="682" extended-state="0" />
+    <frame x="43" y="218" width="1292" height="682" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2583732" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21400473" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -266,13 +329,6 @@
     <entry file="file://$PROJECT_DIR$/src/assets/logo.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compontent/Manage/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4087">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Compontent/Manage/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -291,7 +347,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -314,7 +369,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-112">
           <caret line="104" column="22" selection-start-line="101" selection-start-column="16" selection-end-line="104" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -336,7 +390,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-412">
           <caret line="79" column="63" selection-start-line="79" selection-start-column="63" selection-end-line="79" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -365,13 +418,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-112">
           <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Page/PeopleManage/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -458,23 +504,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Compontent/MyHandover/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Page/Transfer/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="84" column="40" selection-start-line="84" selection-start-column="40" selection-end-line="84" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -482,7 +511,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1275">
           <caret line="89" selection-start-line="89" selection-end-line="89" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -501,27 +529,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Page/Monitor/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
-          <folding>
-            <element signature="e#321#554#0" />
-            <element signature="n#!!block;n#componentDidMount#0;n#Monitor#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Config/env.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+        <state relative-caret-position="30">
+          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Compontent/PeopleList/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
+        <state relative-caret-position="253">
           <caret line="70" column="13" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
@@ -531,8 +548,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Page/LiveScreen/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+        <state relative-caret-position="143">
+          <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Page/Monitor/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="86" column="109" selection-start-line="86" selection-start-column="109" selection-end-line="86" selection-end-column="109" />
+          <folding>
+            <element signature="e#321#554#0" />
+            <element signature="n#!!block;n#componentDidMount#0;n#Monitor#0" />
+            <element signature="e#1109#1380#0" />
+            <element signature="e#1445#2884#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compontent/Manage/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Page/PeopleManage/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Page/Transfer/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-266">
+          <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compontent/MyHandover/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
         </state>
       </provider>
     </entry>

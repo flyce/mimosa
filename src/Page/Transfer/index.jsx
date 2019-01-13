@@ -26,7 +26,6 @@ class Transfer extends React.Component {
         get('transfer').then(
             response => {
                 if(response.success) {
-                    console.log(response.data.length > 0);
                     this.setState({
                         handover: response.data,
                         initialValue: response.data,

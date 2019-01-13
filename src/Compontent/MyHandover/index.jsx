@@ -58,8 +58,7 @@ class MyHangover extends React.PureComponent {
     dayOrNightTransfer = time => new Date(time).toLocaleString('zh-CN', {hour12: false}).substr(11,2) > 10 ? '白班' : '夜班';
 
     render() {
-        const { handover } = this.props;
-        console.log(handover);
+        const { handover } = this.props; 
         return (
             <div>
                 {handover.map((handoverRecord, index) => {
