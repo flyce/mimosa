@@ -1,11 +1,12 @@
 import React from 'react';
 import Header from '../../Layout/Header';
-import { Table, message, Popover, Input, Popconfirm, Button } from "antd/lib/index";
+import { Table, message, Popover, Input, Popconfirm, Button, Select } from "antd/lib/index";
 import './style.css';
 
 import { get, post, downloadFile } from "../../Utils/fetch";
 
 const Search = Input.Search;
+const Option = Select.Option;
 
 class Monitor extends React.Component {
     state = {
@@ -48,6 +49,17 @@ class Monitor extends React.Component {
         return string;
     };
 
+    letter2Chinese = (letter) => {
+        let chinese = '';
+        switch (letter) {
+            case 'pf': chinese = '航前';break;
+            case 'pr': chinese = '过站';break;
+            case 'af': chinese = '航后';break;
+            default: break;
+        }
+        return chinese;
+    };
+
     handleDataUpdate = (data, record, timeOrPosition, key) => {
         post('flight/update', data).then(
             response => {
@@ -68,6 +80,9 @@ class Monitor extends React.Component {
                                break;
                            case 'plannedDeparture':
                                message.success(`${record.flightNo} 进港时间 修改为 ${timeOrPosition}`);
+                               break;
+                           case 'category':
+                               message.success(`${record.flightNo} 修改 类型 为 ` + this.letter2Chinese(timeOrPosition));
                                break;
                            default:;
                        }
@@ -235,7 +250,18 @@ class Monitor extends React.Component {
             render: (record) => this.renderPopover(record, 'power')
         }, {
             title: '类别',
-            dataIndex: 'category',
+            render: (record) => {
+                return <Select defaultValue={record.category} style={{ width: 80 }} onChange={
+                    result => {
+                        const category = result;
+                        this.handleDataUpdate({_id: record._id, category}, record, category, 'category');
+                    }
+                }>
+                    <Option value="pf">航前</Option>
+                    <Option value="af">航后</Option>
+                    <Option value="tr">过站</Option>
+                </Select>;
+            }
         }, {
             title: '放行人员',
             render: (record) => this.renderPeopleName(record, 'release')

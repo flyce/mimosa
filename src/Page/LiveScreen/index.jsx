@@ -29,10 +29,19 @@ class LiveScreen extends React.Component {
                     timestamp: data
                 });
             }
-        })
+        });
+        this.intervalId = setInterval(() => {
+            this.initFlightData();
+        }, 60000);
+        // 修改当前页面背景模式
+        document.getElementsByTagName("body")[0].style.backgroundColor = "#f5f2f2";
+
 
     };
 
+    componentWillUnmount() {
+        clearInterval(this.intervalId);
+    }
     initFlightData = () => {
         get('cli/flight?limit=100').then(
             response => {
@@ -101,11 +110,29 @@ class LiveScreen extends React.Component {
     timeCheck = time => {
         const mins = parseInt(time.substr(0, 2) * 60) + parseInt(time.substr(3, 2))  ;
         const currentMins = Number(new Date().getHours() * 60) + Number(new Date().getMinutes());
-        if( currentMins - 120 < mins ) {
-            return true;
-        } else {
-            return false;
+        return currentMins - 120 < mins;
+    };
+
+    pfCheck = () => {
+        const { flight } = this.state;
+        let pfData = [];
+        flight.map(value => {
+            if(value.category === 'pf' && !value.releaseTime) {
+                pfData.push(value);
+            }
+        });
+        return pfData;
+    };
+
+    letter2Chinese = (letter) => {
+        let chinese = '';
+        switch (letter) {
+            case 'pf': chinese = '航前';break;
+            case 'pr': chinese = '过站';break;
+            case 'af': chinese = '航后';break;
+            default: break;
         }
+        return chinese;
     };
 
     render() {
@@ -169,16 +196,35 @@ class LiveScreen extends React.Component {
         }];
 
         return (
-            <div>
-                <div className="liveLogo">
-                    <img alt="logo" src={logo} />
-                    <span>Mimosa Project </span>
+            <div className="liveScreen">
+                <div>
+                    <div className="liveLogo">
+                        <img alt="logo" src={logo} />
+                        <span>Mimosa Project </span>
+                    </div>
+                    {/*<div style={{ padding: '0 20px'}}>*/}
+                    {/*<Table dataSource={this.state.flight} rowKey={(record) => record._id} columns={columns} size="small" pagination={false} loading={this.state.isLoading} />*/}
+                    {/*</div>*/}
+                    <div style={{display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap'}}>
+                        {this.pfCheck().map((value, index) => {
+                            return <div key={index}>
+                                <div className={this.getColorFlag(value) + ' ' + 'aCard'}>
+                                    <strong className="str">{value.plannedArrived + '-' + value.plannedDeparture}</strong>
+                                    <div className="con">
+                                        <div>{value.flightNo}&nbsp;&nbsp;&nbsp;&nbsp;{value.tail}</div>
+                                        <div>{value.position}</div>
+                                        <div>{value.airlines}&nbsp;&nbsp;&nbsp;&nbsp;{this.letter2Chinese(value.category)}
+                                        </div>
+                                        <div>{this.getPeopleName(value.people)}</div>
+                                        {value.note ? <div>value.note</div> : null}
+                                    </div>
+                                </div>
+                            </div>
+                        })}
+                    </div>
                 </div>
-                {/*<div style={{ padding: '0 20px'}}>*/}
-                    {/*/!*<Table dataSource={this.state.flight} rowKey={(record) => record._id} columns={columns} size="small" pagination={false} loading={this.state.isLoading} />*!/*/}
-                {/*</div>*/}
                 <div style={{display: 'flex', justifyContent: 'Center'}}>
-                    <Timeline mode="alternate" pending style={{marginTop: '30px', width: "900px"}}>
+                    <Timeline mode="alternate" style={{marginTop: '30px', width: "900px"}}>
                         {this.state.flight.map((value, index) => {
                             if(this.timeCheck(value.plannedArrived)) {
                                 return (
@@ -189,7 +235,7 @@ class LiveScreen extends React.Component {
                                                 <div className="con">
                                                     <div>{value.flightNo}&nbsp;&nbsp;&nbsp;&nbsp;{value.tail}</div>
                                                     <div>{value.position}</div>
-                                                    <div>{value.airlines}&nbsp;&nbsp;&nbsp;&nbsp;{value.category}
+                                                    <div>{value.airlines}&nbsp;&nbsp;&nbsp;&nbsp;{this.letter2Chinese(value.category)}
                                                     </div>
                                                     <div>{this.getPeopleName(value.people)}</div>
                                                     {value.note ? <div>value.note</div> : null}
