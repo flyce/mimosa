@@ -128,7 +128,7 @@ class LiveScreen extends React.Component {
         let chinese = '';
         switch (letter) {
             case 'pf': chinese = '航前';break;
-            case 'pr': chinese = '过站';break;
+            case 'tr': chinese = '过站';break;
             case 'af': chinese = '航后';break;
             default: break;
         }
@@ -235,7 +235,7 @@ class LiveScreen extends React.Component {
                                                 <div className="con">
                                                     <div>{value.flightNo}&nbsp;&nbsp;&nbsp;&nbsp;{value.tail}</div>
                                                     <div>{value.position}</div>
-                                                    <div>{value.airlines}&nbsp;&nbsp;&nbsp;&nbsp;{this.letter2Chinese(value.category)}
+                                                    <div>{value.airlines}{value.airlines ? "&nbsp;&nbsp;&nbsp;&nbsp;" : ""}{this.letter2Chinese(value.category)}
                                                     </div>
                                                     <div>{this.getPeopleName(value.people)}</div>
                                                     {value.note ? <div>value.note</div> : null}
