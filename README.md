@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+此项目飞机维修一线工作排班助手，根据长水常准导出的航班，选择车间/中队的人员，即可完成排班，需配合 [mimosaServer](https://github.com/flyce/mimosaServer) 使用。
+
+## 禁止任何公司或个人商用！！！
+## 禁止任何公司或个人商用！！！
+## 禁止任何公司或个人商用！！！
 
 ## Available Scripts
 
@@ -11,12 +15,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
@@ -37,8 +35,9 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Need more help?
+E-mail: mail@flyce.cn
+Wechat: NokiaXF
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 禁止任何公司或个人商用！！！
+## 禁止任何公司或个人商用！！！
